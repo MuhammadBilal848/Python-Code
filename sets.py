@@ -126,10 +126,10 @@ print(x)
 # Separate the sets with a comma
 # syntax set.intersection(set1, set2 ... etc)
 print("                                   intersection()")
-a = {1,2,3,4,5,6}
-b = {5,6,7,4,8,5,6}
-c = a.intersection(b)
-print(c)
+    a = {1,2,3,4,5,6}
+    b = {5,6,7,4,8,5,6}
+    c = a.intersection(b)
+    print(c)
 # ________OR__________
 a = {1,2,3,4,5,6}
 b = {5,6,7,4,8,5,6}
@@ -158,6 +158,7 @@ a.intersection_update(b,c)
 print(a)
 ##############################################################################
 # The isdisjoint() method returns True if none of the items are present in both sets, otherwise it returns False.
+# disjoint - two sets are said to be disjoint sets if they have no element in common
 # this has one parameter named "set" (Required. The set insert into the current set)
 # syntax set.isdisjoint(set)
 print("                                   isdisjoint()")

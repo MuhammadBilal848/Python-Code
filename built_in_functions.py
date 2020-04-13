@@ -185,3 +185,14 @@ for a in l:
 # _________OR__________
 for k in zip(l1,l2):
     print(max(k))
+
+# define a function that takes multiple list containing numbers [1,2,3] , [4,5,6] , [7,8,9] and return average (1+4+7)/3 ,(2+5+8)/3,(3+6+9)/3
+def average(*args):
+    new_avg = []
+    for pair in zip(*args):
+        new_avg.append(sum(pair)/len(pair))
+    print(new_avg)
+average([1,2,3] , [4,5,6] , [7,8,9])
+# now we make the same function using lambda expression
+lam_average = lambda *args : [ sum(pair)/len(pair) for pair in zip(*args) ]
+print(lam_average([1,2,3] , [4,5,6] , [7,8,9]))

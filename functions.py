@@ -56,7 +56,8 @@ def man(**kwargs):
 # man(f_name="Muhammad",s_name="Bilal",l_name="Haneef",age=20)
 d = {'f_name': 'Muhammad', 's_name': 'Bilal', 'l_name': 'Haneef', 'age': 20} 
 man(**d)  # here ** use for dictionary unpacking
-# d = { f_name = 'Muhammad', s_name = 'Bilal', l_name = 'Haneef', age = 20 } thats how unpacked dictionary looks like
+# **d = { f_name = 'Muhammad', s_name = 'Bilal', l_name = 'Haneef', age = 20 } thats how unpacked dictionary looks like(we cant print this its 
+# just an explaination)
 # ------------------*****************--------------------
 # Function: default value parameter(default parameters should be at last of all parameters)
 # what if we define function and user calls it but not provide arguments to function
@@ -79,6 +80,17 @@ pizza( 15 , "Beef" , "5 Onions" )
 # would have more values
 # those parameter which have this (*) store multiple values in form of tuples
 pizza( 15 , "Beef" , "5 Onions" ,"6 Red pepper" , "4 mushrooms" )
+
+def li_sum(*args):
+    for a in args:
+        print(a)
+l1 = ([1,2,3],[3,4,5])
+l2 = ([6,7,8],[9,10,11])
+li_sum(*l1,*l2) # here i put *before l1 and l2 for tuple unpacking because my both list is in tuple  and i want each list in output which
+# will unpack my tuple 
+# *l1 = [1,2,3],[3,4,5]
+# 
+#  
 # ------------------*****************--------------------
 # Function: passing information back from them
 # Functions only perform a given task when they are called
@@ -107,7 +119,7 @@ print(result)
 def add_mult(num_1,num_2):
     add = num_1 + num_2
     mult = num_1 * num_2
-    return add,mult # this will return ruple 
+    return add,mult # this will return tuple 
 a = add_mult(2,5)
 print(a)
 # OR
@@ -176,10 +188,16 @@ sad()
 # by using globe keyword we can make a varibale global that can also be used outside function
 # and Also, use the global keyword if you want to make a change to a global variable inside a function.
 def fun():
+    """ This is a fun function """
     global b
     b = input("Enter your name: ")
     print(f"Hello {b}")
 fun()
+# ------------------*****************--------------------
+# a way to let user know more about function or to give information about function
+# we use "DocString-document string" for this, inside function anything that we write in """ """ triple quotation is considered as docstr
+# and to access docstr of a function, funcname.__doc__ this will show doc str of function
+print(fun.__doc__)
 # ------------------*****************--------------------
 # Function within function
 # we can call a function inside another function providing the required signauture of the function
@@ -197,3 +215,6 @@ def salCalc(basic,sales):
     print(f"Your gross salary is {grossSalary}")
 salCalc(2500,150)
 salCalc(2500,500)
+# ------------------*****************--------------------
+# we have help function which helps us if we forgot something about any function's functionality
+print(help(sum))
