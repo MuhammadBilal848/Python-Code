@@ -55,8 +55,8 @@ def man(**kwargs):
         print(a)
 # man(f_name="Muhammad",s_name="Bilal",l_name="Haneef",age=20)
 d = {'f_name': 'Muhammad', 's_name': 'Bilal', 'l_name': 'Haneef', 'age': 20} 
-man(**d) 
-
+man(**d)  # here ** use for dictionary unpacking
+# d = { f_name = 'Muhammad', s_name = 'Bilal', l_name = 'Haneef', age = 20 } thats how unpacked dictionary looks like
 # ------------------*****************--------------------
 # Function: default value parameter(default parameters should be at last of all parameters)
 # what if we define function and user calls it but not provide arguments to function
