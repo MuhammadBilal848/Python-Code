@@ -113,6 +113,45 @@ def is_even(a):
 f = list(filter(is_even,numbers))
 print(f)
 # ______________________________________________________________________________________________________________________________________________
+# The iter() function returns an iterator object.
+# syntax - iter(object, sentinel)
+# object	Required. An iterable object
+# sentinel	Optional. If the object is a callable object the iteration will stop when the returned value is the same as the sentinel
+
+print("                                      iter()")
+a = [1,2,3,4,5,6]
+iterable = iter(a)
+print(iterable) # this will return a list_iterator object which is iterator
+# now this iter function takes each element of my list one by one and assign in my iterable varibale and if i want to access those element every 
+# time i use next function that returns the next item in an iterator.
+print(next(iterable))
+print(next(iterable))
+print(next(iterable)) 
+print(next(iterable))
+print(next(iterable))
+print(next(iterable)) # this is my last element from a list
+# print(next(iterable)) # now my list is empty or has no element in it, this will give error 
+# Thats how for loop works
+# whenever iter() and next() applied on an object(list,tuple,etc), this object is called iterable 
+# or anything on which we can apply for loop is called iterable
+# ______________________________________________________________________________________________________________________________________________
+# The next() function returns the next item in an iterator.
+# You can add a default return value, to return if the iterable has reached to its end.
+print("                                      next()")
+a = map(lambda sq : sq**2 , range(1,10)) 
+print(a) # so this is map object which is an iterator itself 
+# so i can direct apply next function to it and get all my values
+print(next(a))
+print(next(a))
+print(next(a))
+print(next(a))
+print(next(a))
+print(next(a))
+print(next(a))
+print(next(a))
+print(next(a))
+# line no 123 is also a iterator and i can iterate over it by next func.
+# ______________________________________________________________________________________________________________________________________________
 print("                                     zip()")
 # The zip() function returns a zip object, which is an iterator of tuples where the first item in each passed iterator is paired together,
 # and then the second item in each passed iterator are paired together etc.
