@@ -126,10 +126,10 @@ print(x)
 # Separate the sets with a comma
 # syntax set.intersection(set1, set2 ... etc)
 print("                                   intersection()")
-    a = {1,2,3,4,5,6}
-    b = {5,6,7,4,8,5,6}
-    c = a.intersection(b)
-    print(c)
+a = {1,2,3,4,5,6}
+b = {5,6,7,4,8,5,6}
+c = a.intersection(b)
+print(c)
 # ________OR__________
 a = {1,2,3,4,5,6}
 b = {5,6,7,4,8,5,6}
