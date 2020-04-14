@@ -8,6 +8,15 @@ def add(): # this type of function is called parameter less function
     print( num_1 + num_2 )
 # now we are calling function  
 add()
+
+def addfunc(a,b):
+    print(a+b)
+a = addfunc(2,3)
+print(a) # there are two print statements. First is inside function and second is outside function. When function not 
+# return any thing that time it return None value.
+a = addfunc # here is assign my addfunc in a now a is my function and i can use this with () braces
+print(a(2,3))
+print(a.__name__) # this will return real name of a function
 # ------------------*****************--------------------
 # Function: passing information positional arguments
 # here num1 and num2 are parameters
@@ -126,17 +135,6 @@ print(a)
 b,c = add_mult(4,3) # we can also use values individually
 print(b)
 print(c)
-########################################################
-# Function: function returning function
-def outerfunc():
-    def innerfunc():
-        print("Hello Pythonista")
-    return innerfunc # notice: i didnt put braces here due to which the path of function will return to outer function and whenever i assign 
-    # outerfunc in a variable and use print that variable output will be the path of function but when i use braces with that variable it will 
-    # become function
-var = outerfunc()
-print(var) # this will print path of outerfunc
-var() # this will print anything present in innerfunc
 #########################################################
 # Function: function inside function
 def greater(a,b):
@@ -194,6 +192,20 @@ def fun():
     print(f"Hello {b}")
 fun()
 # ------------------*****************--------------------
+# Function: Pass function as arguments
+def square(a):
+    return a**2
+def special_sq(func,l):
+    new_l = []
+    for a in l:
+        new_l.append(func(a))
+    print(new_l)
+special_sq(square,[1,2,3,4,5,6])
+# another method
+def spec_sq2(func,l):
+    return [ func(a) for a in l ]
+spec_sq2(square,[1,2,3,4,5])
+# ------------------*****************--------------------
 # a way to let user know more about function or to give information about function
 # we use "DocString-document string" for this, inside function anything that we write in """ """ triple quotation is considered as docstr
 # and to access docstr of a function, funcname.__doc__ this will show doc str of function
@@ -217,4 +229,4 @@ salCalc(2500,150)
 salCalc(2500,500)
 # ------------------*****************--------------------
 # we have help function which helps us if we forgot something about any function's functionality
-print(help(sum))
+# print(help(sum))

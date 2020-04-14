@@ -67,6 +67,15 @@ for v in u1:
     print(v)
 # loop = list(map(int,input().split())) # this is to take input from user and convert all its given numbers in integers and make a list of 'em
 # print(loop)
+# function below works just like map funtion 
+def square(a):
+    return a**2
+def special_sq(func,l):
+    new_l = []
+    for a in l:
+        new_l.append(func(a))
+    print(new_l)
+special_sq(square,[1,2,3,4,5,6])
 # ______________________________________________________________________________________________________________________________________________
 #  The filter() function returns an iterator were the items are filtered through a function to test if the item is accepted or not.
 # syntax - filter(function, iterable)
