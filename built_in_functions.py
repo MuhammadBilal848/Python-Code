@@ -97,6 +97,33 @@ for b in d:
     print(b)
 for b in d:
     print(b)
+
+def filt_name(*args):
+    for item in args:
+        if item==str(item):
+            return True
+        else: 
+            return False
+b = list(filter(filt_name,["Usama","Abuzar",12,"nofil",23,"z",4,"KK"]))
+print(b)
+
+fill = list(filter(lambda name : True if (name is str(name)) else False,["Usama","Abuzar",12,"nofil",23,"z",4,"KK"]))
+print(fill)
+
+# function that filters vowels 
+def fun(variable): 
+    letters = ['a', 'e', 'i', 'o', 'u'] 
+    if (variable in letters): 
+        return True
+    else: 
+        return False  
+# sequence 
+sequence = ['g', 'e', 'e', 'j', 'k', 's', 'p', 'r'] 
+# using filter function 
+filtered = filter(fun, sequence) 
+print('The filtered letters are:') 
+for s in filtered: 
+    print(s) 
 # ___________________________________________________ DIFFERENCE BETWEEN MAP AND FILTER ___________________________________________________ 
 print("                                       map() Vs filter()")
 # Map takes all objects in a list and allows you to apply a function to it.
@@ -128,7 +155,7 @@ print(f)
 # sentinel	Optional. If the object is a callable object the iteration will stop when the returned value is the same as the sentinel
 
 print("                                      iter()")
-a = [1,2,3,4,5,6]
+a = [1,2,3,4,5,6] # ----------------> iterable      
 iterable = iter(a)
 print(iterable) # this will return a list_iterator object which is iterator
 # now this iter function takes each element of my list one by one and assign in my iterable varibale and if i want to access those element every 
@@ -141,7 +168,7 @@ print(next(iterable))
 print(next(iterable)) # this is my last element from a list
 # print(next(iterable)) # now my list is empty or has no element in it, this will give error 
 # Thats how for loop works
-# whenever iter() and next() applied on an object(list,tuple,etc), this object is called iterable 
+# whenever iter() and next() applied on an object(list,tuple,string,etc), this object is called iterable 
 # or anything on which we can apply for loop is called iterable
 # ______________________________________________________________________________________________________________________________________________
 # The next() function returns the next item in an iterator.
