@@ -65,7 +65,7 @@ for q in u1:
 # now im gonna loop again to map object but it will not let me do it(it wont show any error but it prints nothhing on screen)
 for v in u1:
     print(v)
-# loop = list(map(int,input().split())) # this is to take input from user and convert all its given numbers in integers and make a list of 'em
+# loop = list(map(int,input().strip()   .split())) # this is to take input from user and convert all its given numbers in integers and make a list of 'em
 # print(loop)
 # function below works just like map funtion 
 def square(a):
@@ -155,7 +155,7 @@ print(f)
 # sentinel	Optional. If the object is a callable object the iteration will stop when the returned value is the same as the sentinel
 
 print("                                      iter()")
-a = [1,2,3,4,5,6] # ----------------> iterable      
+a = [1,2,3,4,5,6] # ----------------> iterable    (something that can be looped over)
 iterable = iter(a)
 print(iterable) # this will return a list_iterator object which is iterator
 # now this iter function takes each element of my list one by one and assign in my iterable varibale and if i want to access those element every 
@@ -188,12 +188,12 @@ print(next(a))
 print(next(a))
 # line no 123 is also a iterator and i can iterate over it by next func.
 # ______________________________________________________________________________________________________________________________________________
-print("                                     zip()")
 # The zip() function returns a zip object, which is an iterator of tuples where the first item in each passed iterator is paired together,
 # and then the second item in each passed iterator are paired together etc.
 # If the passed iterators have different lengths, the iterator with the least items decides the length of the new iterator.
 # syntax - zip(iterator1, iterator2, iterator3 ...)
 # iterator1, iterator2, iterator3 ...	Iterator objects that will be joined together
+print("                                     zip()")
 User_ID = ["user 1" , "user 2" , "user 3"]
 User_NAME = ["Bilal","Hamza","Zeeshan"]
 # so if we want to zip this use we use zip funtion
@@ -232,3 +232,125 @@ average([1,2,3] , [4,5,6] , [7,8,9])
 # now we make the same function using lambda expression
 lam_average = lambda *args : [ sum(pair)/len(pair) for pair in zip(*args) ]
 print(lam_average([1,2,3] , [4,5,6] , [7,8,9]))
+# ______________________________________________________________________________________________________________________________________________
+# The all() function returns True if all items in an iterable are true, otherwise it returns False.
+# If the iterable object is empty, the all() function also returns True.
+# syntax - all(iterable)
+# iterable : An iterable object (list, tuple, dictionary)
+print("                                      all()")
+a = [0,1,0,1,1,0] # so here list contain binary digit which acts as True and False so all function return False bc not all elements are True in
+# list
+print(all(a))
+
+a = [1,1,1,1,1,1,1] # now all elements are True
+print(all(a))
+
+mydict = {0 : "Apple", 1 : "Orange"}
+x = all(mydict)
+print(x)
+
+mydict = {1 : "Apple", 1 : "Orange"}
+x = all(mydict)
+print(x)
+
+# so now define a list comprehension that return True if all numbers in list are even else False and after which we have to check my list of 
+# True and False that all elemets in list are True or False
+l = [2,4,6,8,10]
+a = [ b%2==0 for b in l ]
+print(a)
+print(all(a)) # this will return True because my list(l) contain all even numbers
+
+l = list(range(1,11))
+a = [ b%2==0 for b in l ]
+print(a)
+print(all(a))  # this will return False because my list contain both even and odd numbers
+
+def addi(*args):
+    total = 0
+    for a in args:
+        total += a
+    return total
+print(addi(1,9)) # what if user passes any kind of string or list or tuple as argument so program will generate ereor, to prevent this we can
+# use all function
+
+def addit(*args):
+    a = [ True if (type(b) is int) else False for b in args ]
+    if all(a):
+        total = 0
+        for a in args:
+            total += a
+        return total
+    else: 
+        return "you have entered wrong data type"
+print(addit(1,2,3,4,5,1))
+print(addit(1,2,3,"bilal",[1,2,3]))
+
+# ______________________________________________________________________________________________________________________________________________
+# The any() function returns True if any item in an iterable are true, otherwise it returns False.
+# If the iterable object is empty, the any() function will return False.
+# syntax - any(iterable)
+# iterable	An iterable object (list, tuple, dictionary)
+print("                                      any()")
+a = [1,0,0,0,0,0] # so here only one number is 1 and rest of them are 0 , so any function returns True because there is 1 present in list
+print(any(a))
+
+a = [0,0,0,0,0,0] # so here all elements are 0 therefore any function returns False
+print(any(a))
+
+mydict = {1 : "Apple", 1 : "Orange"}
+x = all(mydict)
+print(x)
+
+mydict = {0 : "Apple", 0 : "Orange"}
+x = all(mydict)
+print(x)
+# ______________________________________________________________________________________________________________________________________________
+# The min() function returns the item with the lowest value, or the item with the lowest value in an iterable.
+# If the values are strings, an alphabetically comparison is done.
+# syntax - min(*iterable, default=obj, key=func) 
+# default (optional) - default value if the given iterable is empty  g = mix([],default=9) here my iterable is empty and default set to 9 so 
+# function will return 9
+# key (optional) - key function where the iterables are passed and comparison is performed based on its return value ( key = value )
+
+
+# n1, n2, n3, ...	One or more items to compare
+print("                                      min()")
+a = [1,2,3,4,5]
+print(min(a))
+
+print(min(0.0001,0.01,1,2,3,4,5,6,7,8,999,999999))
+
+a = ["Bilal","Hamza","Abuzar"]
+print(min(a))
+
+# now if we want min function to work like that if i pass an iterable in min function so min function return the shortest string in iterable
+# for this purppose i need to make a function that takes item and return its length
+def len_item(item):
+    return len(item)
+
+a = ["Bill","Abuzar","Harison","Barry"] 
+print(min(a, key = len_item))  # now here i can use that function len_item in key //// we  can also use lambda expression as value against key
+
+# ______________________________________________________________________________________________________________________________________________
+# The max() function returns the item with the highest value, or the item with the highest value in an iterable.
+# If the values are strings, an alphabetically comparison is done.
+# syntax - max(*iterable, default=obj, key=func) 
+# default (optional) - default value if the given iterable is empty  g = max([],default=9) here my iterable is empty and default set to 9 so 
+# function will return 9
+# key (optional) - key function where the iterables are passed and comparison is performed based on its return value ( key = value )
+print("                                      max()")
+a = [1,2,3,4,5]
+print(max(a))
+
+print(max(0.0001,0.01,1,2,3,4,5,6,7,8,999,999999))
+
+a = ["Bilal","Hamza","Abuzar"]
+print(max(a))
+
+# now if we want min function to work like that if i pass an iterable in min function so min function return the longest string in iterable
+# for this purppose i need to make a function that takes item and return its length
+def len_item1(item):
+    return len(item)
+
+a = ["Bill","Abuzar","Harison","Barry"] 
+print(max(a, key = len_item1))  # now here i can use that function len_item in key 

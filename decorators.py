@@ -66,6 +66,7 @@ print(square1.__name__) # this will show wrapper func name instead of square1 fu
 
 from functools import wraps
 def deco_func(any_func):
+    @wraps(any_func) # if we want to access our function name we have to use this built in decorator wraps that allow us to access our func name
     def wrapper(*args,**kwargs):
         print(f"You are calling {any_func.__name__} function")
         print(any_func.__doc__)
