@@ -129,7 +129,7 @@ print("                                       map() Vs filter()")
 # Map takes all objects in a list and allows you to apply a function to it.
 a = [1,2,3,4,5,6,7,8,9]
 sq = list(map(lambda v : v*2 , range(0,10)))
-print(sq)
+print(sq)   
 # Filter takes all objects in a list and runs that through a function to create a new list with all objects that and check whether it is accepted
 # for that function or not if it is then it will print that number and if it is not it will not print this number.
 # filter function just check our object that it is accepted for that function or not.
@@ -354,3 +354,12 @@ def len_item1(item):
 
 a = ["Bill","Abuzar","Harison","Barry"] 
 print(max(a, key = len_item1))  # now here i can use that function len_item in key 
+
+
+students = [ {"name":"Bilal" , "score":80 , "age":20 },
+             {"name":"Hamza" , "score":75 , "age":25 },   
+             {"name":"Zeeshan" , "score":90 , "age":21}
+           ]
+print(max(students, key = lambda item : item.get("score"))["name"])
+# print(max(students[, key = lambda item : item.get("score"))["name"]])
+print(max(students, key = lambda item : item.get("score"))["name"])
