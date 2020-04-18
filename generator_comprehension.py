@@ -12,7 +12,7 @@ print(next(gen1))
 print(next(gen1))
 print(next(gen1))
 
-gen2 = ( i**2 for i in range(1,11) if i%2==0 ) 
+gen2 = ( i**2 for i in range(1,11) if i%2==0 ) # this will generate even numbers
 print(gen2)
 print(next(gen2))
 print(next(gen1))
