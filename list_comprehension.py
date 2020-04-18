@@ -1,4 +1,4 @@
-# list comprehension - with the help of t   his we can create list in single line
+# list comprehension - with the help of this we can create list in single line
 # syntax - [(expression)/(something we want to append) for item in list] --------> here square braces are included
 a = []
 for b in range(1,11):

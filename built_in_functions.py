@@ -68,6 +68,11 @@ for v in u1:
 # loop = list(map(int,input().strip()   .split())) # this is to take input from user and convert all its given numbers in integers and make a list of 'em
 # print(loop)
 # function below works just like map funtion 
+for a in map(lambda n : n**2 , [1,2,3,4,5,6,7,8,9]):  # in this way i can iterate as many times as i want
+    print(a)                                            
+for a in map(lambda n : n**2 , [1,2,3,4,5,6,7,8,9]):
+    print(a)
+
 def square(a):
     return a**2
 def special_sq(func,l):
@@ -173,6 +178,8 @@ print(next(iterable)) # this is my last element from a list
 # ______________________________________________________________________________________________________________________________________________
 # The next() function returns the next item in an iterator.
 # You can add a default return value, to return if the iterable has reached to its end.
+# this has two parameters first is iterator and second is default(If default is given and the iterator is run of values, it is returned instead
+#  of raising StopIteration)
 print("                                      next()")
 a = map(lambda sq : sq**2 , range(1,10)) 
 print(a) # so this is map object which is an iterator itself 
@@ -186,6 +193,7 @@ print(next(a))
 print(next(a))
 print(next(a))
 print(next(a))
+print(next(a,"stop iteration"))
 # line no 123 is also a iterator and i can iterate over it by next func.
 # ______________________________________________________________________________________________________________________________________________
 # The zip() function returns a zip object, which is an iterator of tuples where the first item in each passed iterator is paired together,

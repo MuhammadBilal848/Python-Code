@@ -1,3 +1,4 @@
+from functools import wraps
 # Decorators - enhance the functionality of other functions
 
 # on line 11 we have simple function that prints a single line and we want this function to print another line but not by changing this function,
@@ -64,9 +65,8 @@ print(square1.__name__) # this will show wrapper func name instead of square1 fu
 # print(square1.__doc__) 
 # print(square1.__name__)
 
-from functools import wraps
 def deco_func(any_func):
-    @wraps(any_func) # if we want to access our function name we have to use this built in decorator wraps that allow us to access our func name
+    @wraps(any_func) 
     def wrapper(*args,**kwargs):
         print(f"You are calling {any_func.__name__} function")
         print(any_func.__doc__)
@@ -80,3 +80,46 @@ def add(a,b):
 
 # e = deco_func
 print(add(3,3))
+
+# below is the decorator that prevents user to give input in other data types except integer
+def deccorator(anyfunc):
+    #     @wraps(anyfunc)
+    def under_deco(*args):
+        datatype = []
+        for arg in args:
+            datatype.append(type(arg)==int)
+        if all(datatype):
+            return anyfunc(*args)
+        else:
+            return "You have entered wrong data type"
+    return under_deco
+
+@deccorator
+def product(*args):
+    a = 1
+    for b in args:
+        a += b
+    return a
+
+g = product(1,2,3,4,5,[1,2,3])
+print(g)
+# below is the code that takes prevent user to give input in other data types except our mentioned one(which we can pass as argument in syntactic
+# sugar).
+def upper_deco(data_type):
+    def deco_rator(func):
+        def wrapper(*args,**kwargs):
+            if all([ type(arg)==data_type for arg in args ]):
+                return func(*args,**kwargs)
+            return "You have entered wrong data type"
+        return wrapper
+    return deco_rator
+
+@upper_deco(str)
+def producto(*args,**kwargs):
+    a = ""
+    for b in args:
+        a += b
+    return a
+
+print(producto("B","I","L","A","L"))
+print(producto(1,2,3))
