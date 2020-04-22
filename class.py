@@ -12,6 +12,7 @@
 print("                                     Person Class(Half")
 class Person:
     def __init__(self,first_name,last_name,age): # __init__ method is called constructor
+# we cannot define multiple init methods in class but if we do then the last init method will be considered as main init method
         self.first_name = first_name
         self.last_name = last_name
         self.age = age 
@@ -148,6 +149,7 @@ Laptop.disc_rate = 0 # here i change by 10% discount to 0% and i can change it f
 print(obj1.discount())
 print(obj2.discount())
 print(obj3.discount())
+#  here __dict__ is called data discriptor
 print(obj1.__dict__) # __dict__ convert any object's argument to dictionary in which keys are parameters and values are argument
 # now im gonna change the disc_rate for obj3 so when i change class variable for a particular object it will add that variable as instance
 # variable in our object
@@ -176,7 +178,21 @@ objt6 = Teacher("Miss Erum","ENG",54)
 print(Teacher.ins_count)
 print(objt6.ob_count_str)
 # __________________________________________ CLASS METHODS _____________________________________________________________
+# A class method is a method which is bound to the class and not the object of the class.
+# They have the access to the state of the class as it takes a class parameter that points to the class and not the object instance.
+# It can modify a class state that would apply across all the instances of the class. For example it can modify a class variable that 
+# will be applicable to all the instances.
 # so here we want to define class method in our class Teacher that works same as instance variable ob_count_str
+class Person:
+    age = 25
+    def printAge(cls):
+        print('The age is:', cls.age)
+# create printAge class method
+Person.printAge = classmethod(Person.printAge)
+print(Person.printAge())
+
+#  another method
+
 print("                                     Class Teacher1")
 class Teacher1:
     ins_count = 0
@@ -190,7 +206,7 @@ class Teacher1:
     @classmethod
     def counting_ins(cls): # class method takes its first parameters it self, therefore i put "cls" here , and acc. to convention we always 
 # have to put cls as class parameter we can change it as our wish but its a convention to put cls here
-        return f"You have created {cls.ins_count} instances of class Teacher1"
+        return f"You have created {cls.ins_count} instances of class {cls.__name__}" # to print name of class function we have to use classname.__name__
 # above i can also use my class var as Teacher1.ins_count but here "cls" is now reperesenting our class thats why i put cls there  
     def full_intro(self):
         return f"{self.T_name} teaches {self.T_subject} and has {self.T_experience} years of experience"
@@ -204,3 +220,123 @@ obj6 = Teacher1("Miss Erum","ENG",54)
 print(obj2.full_intro())
 # we always need to use class method by using class name | classname.classmethod()
 print(Teacher1.counting_ins()) 
+print(obj5.counting_ins()) # we can use this method also but thats not the good way of using class method 
+# in line 207 whats hapenning is when interpretor execute this line it will check that is counting_ins a instance method which counting_ins not
+# after which it will check that is counting_ins a class method and yes it is so this will return the result
+# ______________________________________________ CLASS METHODS AS CONSTRUCTOR  _________________________________________________________________
+# in the above class teacher1 if i want to make object like this , obj = Teacher1("Sir Badar,ICS,20") for this i need to use class method as 
+# constructor
+print("                                     Class Teacher2")
+class Teacher2:
+    def __init__(self,T_name,T_subject,T_experience):
+        self.T_name = T_name
+        self.T_subject = T_subject
+        self.T_experience = T_experience
+# here i will define my class method which acts as constructor
+    @classmethod
+    def instance_creater(cls,string):
+        name,subject,experience = string.split(",") # this will split user input and save into individual variables
+        return cls(name,subject,experience)
+    def full_intro(self):
+        return f"{self.T_name} teaches {self.T_subject} and has {self.T_experience} years of experience"
+ob1 = Teacher2.instance_creater("Sir Badar,ICS,20")
+print(ob1.full_intro())
+# _____________________________________________________ STATIC METHOD IN CLASS ________________________________________________________________
+# A static method is also a method which is bound to the class and not the object of the class.
+# A static method can’t access or modify class state.
+# It is present in a class because it makes sense for the method to be present in class.
+# __________OR__________
+# static methods are used when some processing is related to the class but does not  need the class or its instances to perform any work
+# we use static method when we want to pass some values from outside and perform some action in the method
+# @staticmethod need to write above the static method
+print("                                     Class Teacher3")
+class Teacher3:
+    def __init__(self,T_name,T_subject,T_experience):
+        self.T_name = T_name
+        self.T_subject = T_subject
+        self.T_experience = T_experience
+# here i will define my class method which acts as constructor
+    @staticmethod
+    def name():
+        return "Static method get called"
+    @staticmethod
+    def mobile(model,price):
+        return f"{model} costs {price} "
+    @classmethod
+    def instance_creater(cls,string):
+        name,subject,experience = string.split(",") # this will split user input and save into individual variables
+        return cls(name,subject,experience)
+    def full_intro(self):
+        return f"{self.T_name} teaches {self.T_subject} and has {self.T_experience} years of experience"
+print(Teacher3.name())
+print(Teacher3.mobile("Xiaomi note 8",29000))
+# _____________________________________________   ENCAPSULATION _______________________________________________________________
+# Encapsulation is one of the fundamental concepts in object-oriented programming (OOP). It describes the idea of wrapping data and 
+# the methods that work on data within one unit.
+# _____OR______
+# to keep data(instance var/class var etc) and function/method(instance method,static method ,class method ) together like we put them in a
+# capsule, this is called encapsulation
+# 
+# Consider a real-life example of encapsulation, in a company, there are different sections like the accounts section, finance section, sales
+#  section etc. The finance section handles all the financial transactions and keeps records of all the data related to finance. Similarly, 
+# \the sales section handles all the sales-related activities and keeps records of all the sales. Now there may arise a situation when for
+#  some reason an official from the finance section needs all the data about sales in a particular month. In this case, he is not allowed 
+# to directly access the data of the sales section. He will first have to contact some other officer in the sales section and then request
+#  him to give the particular data. This is what encapsulation is 
+
+# ________________________________________________________  ABSTRACTION _______________________________________________________________
+# Abstraction means hiding the complexity and only showing the essential features of the object. So in a way, Abstraction means hiding the
+#  real implementation and we, as a user, knowing only how to use it.
+
+# Real world example would be a vehicle which we drive with out caring or knowing what all is going underneath.
+# A TV set where we enjoy programs with out knowing the inner details of how TV works.
+
+# ________________________________________________________  NAMING CONVENTION _______________________________________________________________
+# in other programming languages like c++ , java there are privet methods , privet variables or public things
+# but in python every thing is public so if i want to make anything privet to other developers i have to put single underscore before it (_name)
+# now my name variable is privet here so that no one can change it. putting underscore doesnt mean that user can't able to change the function/var
+# but it lets developer known that you dont need to touch it and putting underscore is just a convention
+# anything with double underscore __name__ is called "double undersore" or "dunder methods" or "magic methods"
+class Phone:
+    def __init__(self,name,model,price):
+        self.name =  name
+        self.model = model
+        self._price = price # so here if i put _ before price that attached with self after which it will let me change the value of price 
+        # outsite my class 
+    def fullname(self):
+        return self.name + self.model
+    
+p1 = Phone("Nokia","3310",50000)
+p1._price = 900000
+print(p1._price)
+p2 = Phone("Sony erecson","note 8",20000)
+
+# ________________________________________________________  NAME MANGLING _______________________________________________________________
+# so in the above paragraph of name convention putting single undersore means something is privet but we can also change the value so how to 
+# prevent other developers changing the value.
+# for this purspose we use double underscore before the name of variable or function etc. which will prevent others to change the value
+print("                                    Phone1")
+class Phone1:
+    def __init__(self,name,model,price):
+        self.name =  name
+        self.model = model
+        self.__price = price # so here if i put __ before price that attached with self after which it wont let me change the value of price 
+        # outsite my class 
+    def fullname(self):
+        return self.name + self.model
+    
+po1 = Phone1("Nokia","3310",50000)
+# po1.__price = 900000
+# print(po1.__price) # this will generate error that 'Phone1' object has no attribute '_price' , just because we have changed the instance var
+#   by putting double underscore 
+print(po1.__dict__)
+# so what python did here is it has changed the __price to _Phone1__price which will prevent us to change the value
+print(po1._Phone1__price) # so this will print my actual price of phone
+# we can also change the value of it now
+po1._Phone1__price = 10000
+print(po1._Phone1__price)
+print(po1.__dict__)
+
+
+# po2 = Phone1("Sony erecson","note 8",20000)
+# # print(p2.price)

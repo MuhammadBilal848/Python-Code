@@ -66,7 +66,7 @@ print(square1.__name__) # this will show wrapper func name instead of square1 fu
 # print(square1.__name__)
 
 def deco_func(any_func):
-    @wraps(any_func) 
+    # @wraps(any_func) 
     def wrapper(*args,**kwargs):
         print(f"You are calling {any_func.__name__} function")
         print(any_func.__doc__)
@@ -123,3 +123,24 @@ def producto(*args,**kwargs):
 
 print(producto("B","I","L","A","L"))
 print(producto(1,2,3))
+
+
+# _________________________________________________________ SOME EXAMPLES OF DECORATORS _____________________________________________________
+def decorator2(func):
+    def inside_deco(*args):
+        ans = func(*args)
+        return f"Product of {args[0]} , {args[1]} and {args[2]} is {ans}"
+    return inside_deco
+
+
+# @decorator2
+def mult(*args):
+    g = 1
+    for i in args:
+        g *= i
+    return g
+
+# print(mult(1,2,3)) # will work when line 136 wont in form of comment
+
+l = decorator2(mult)
+print(l(1,2,3))

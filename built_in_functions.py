@@ -227,7 +227,7 @@ l = [ (1,2) , (3,4) , (5,6) , (7,8) ]
 for a in l:
     print(max(a))
 # _________OR__________
-for k in zip(l1,l2):
+for k in zip(l1,l2,):
     print(max(k))
 
 # define a function that takes multiple list containing numbers [1,2,3] , [4,5,6] , [7,8,9] and return average (1+4+7)/3 ,(2+5+8)/3,(3+6+9)/3
@@ -261,8 +261,8 @@ mydict = {1 : "Apple", 1 : "Orange"}
 x = all(mydict)
 print(x)
 
-# so now define a list comprehension that return True if all numbers in list are even else False and after which we have to check my list of 
-# True and False that all elemets in list are True or False
+# so now define a list comprehension that return True if all numbers in list are even else False and after which we have to check the.com list of 
+# True and False that all elemets in the list are True or False
 l = [2,4,6,8,10]
 a = [ b%2==0 for b in l ]
 print(a)
