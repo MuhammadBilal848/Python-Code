@@ -1,4 +1,3 @@
-# from functools import wraps
 # Decorators - enhance the functionality of other functions
 
 # on line 11 we have simple function that prints a single line and we want this function to print another line but not by changing this function,
@@ -65,8 +64,9 @@ print(square1.__name__) # this will show wrapper func name instead of square1 fu
 # print(square1.__doc__) 
 # print(square1.__name__)
 
+from functools import wraps
 def deco_func(any_func):
-    # @wraps(any_func) 
+    @wraps(any_func) 
     def wrapper(*args,**kwargs):
         print(f"You are calling {any_func.__name__} function")
         print(any_func.__doc__)
@@ -83,7 +83,7 @@ print(add(3,3))
 
 # below is the decorator that prevents user to give input in other data types except integer
 def deccorator(anyfunc):
-    #     @wraps(anyfunc)
+    @wraps(anyfunc)
     def under_deco(*args):
         datatype = []
         for arg in args:

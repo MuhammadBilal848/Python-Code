@@ -186,12 +186,14 @@ print(objt6.ob_count_str)
 class Person:
     age = 25
     def printAge(cls):
-        print('The age is:', cls.age)
+        return f"The age is:, {cls.age}"
 # create printAge class method
 Person.printAge = classmethod(Person.printAge)
 print(Person.printAge())
+# When do we use class method?
+# 1. Factory methods
+# Factory methods are those methods which return a class obje ct (like constructor) for different use cases.
 
-#  another method
 
 print("                                     Class Teacher1")
 class Teacher1:
@@ -336,7 +338,82 @@ print(po1._Phone1__price) # so this will print my actual price of phone
 po1._Phone1__price = 10000
 print(po1._Phone1__price)
 print(po1.__dict__)
+# ________________________________________  PROPERTY(SETTER AND GETTER) DECORATOR __________________________________________________________
+print("                                         Smartphone")
+class Smartphone:
+    def __init__(self,brand,model_name,price):
+        self.brand =  brand
+        self.model_name = model_name
+        if price > 0:
+            self._price = price
+        else: 
+            self._price = 0
+# we can also do this,  
+#       self._price = max(price,0)
+        self.total_specification = f"{self.brand} {self.model_name} {self._price}"
+    def make_a_call(self,number):
+        return f"calling {number}"
+    def fullname(self):
+        return self.brand + " " + self.model_name
+    @property
+    def specification(self):
+        return f"{self.brand} {self.model_name} {self._price}"
+        
+p1 = Smartphone("Nokia","3310",50000)
+# print(p1._price)
+# so there are some problems in this class that we need to care about.
+# first is what if someone makes an object in which price of smartphone is a negative number, since price cannot be negative so we have to 
+# tackle this(see code changes in line line no 347)
+p2 = Smartphone("Nokia","3310",-9000)
+print(p2._price) 
+# second problem is if i change the value of instance variable(price) then the change wont appear in total specification(the reason behind this
+# is that when we make our object our init method get called and creates our instance variable total_specification and when we change the value
+# of price it will not appear in our total_spec b/c it has alredy created )
+# solution to this problem will be that we can make a function for total_specification
+p2._price = -943000
+print(p2._price,"changed price") 
+print(p2.total_specification)
+# print(p2.specification())  
+# here comes property decorator , if i use property decorator(in line no 358) for my specification function , which let me use my specification
+#  function as an attribute or instace variable instead like function 
+print(p2.specification)  
 
+print("                                         Smartphone1")
+class Smartphone1:
+    def __init__(self,brand,model_name,price):
+        self.brand =  brand
+        self.model_name = model_name
+        if price > 0:
+            self._price = price
+        else: 
+            self._price = 0
+    @property
+    def price(self):
+        return self._price
+    @price.setter
+    def price(self,n_price):
+        self._price = max(n_price+1,0)
+    def make_a_call(self,number):
+        return f"calling {number}"
+    def fullname(self):
+        return self.brand + " " + self.model_name
+    @property
+    def specification(self):
+        return f"{self.brand} {self.model_name} {self._price}"
 
-# po2 = Phone1("Sony erecson","note 8",20000)
-# # print(p2.price)
+sp1 = Smartphone1("Nokia","3310",50000)
+sp2 = Smartphone1("Nokia","3310",9000)
+print(sp2._price,"original price")
+sp2.price = 700000
+print(sp2.price,"changed price") 
+print(sp2.specification)  
+print(sp2.price)
+print(sp2.__dict__)
+
+# now there is a problem if i change the value of price to negative(in line # 402) it will let this happen instead i want to set the value
+# to 0. 
+# for this purpose we can use setter and getter decorator 
+# now we want to set value for price so here we use setter decorator which is actually property decorator it-self , which we define in 
+# line # 390
+# now to set value of price so that it can not be negative , i have to define me setter in line no (393) , always make setter after
+#  getter(property) decorator elsewise this will give error
