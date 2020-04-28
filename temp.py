@@ -77,5 +77,11 @@
     # list = [1,2,3,4,5]
     # if len(list)>3:
     #     print(f"The list is too long with len {len(list)} elements")
-a = "Bilal"
-print(a[4])
+# a = "Bilal"
+# print(a[4])
+
+
+def s():
+    print("Hi!")
+ print("helo")
+s()
