@@ -51,7 +51,7 @@ def add(a,b):
 # in real world programmming we dont return errors like the way we did above(line # 49), for this we use raise keyword and identify that error
 # and write our desired string in that error's braces, so in the above case its typeerror thatswhy we have written TypeError
 print(add(1,1))
-print(add(1,"2"))     
+# print(add(1,"2"))     
 
 class Animal:
     def __init__(self,name):
@@ -68,7 +68,7 @@ class Cat(Animal):
         super().__init__(name)
         self.color = color
 cat1 = Cat("Billi","White")
-print(cat1.sound())
+# print(cat1.sound())
 # now i want to raise error if any of my child class doesnt have sound function , So what i do is i will raise notimplemented
 # error in my sound function of parent class
 # this type of methods in which we raise notimplementederror is called abstract method( line # 59)
@@ -105,6 +105,7 @@ while True:
 # execute else block in other words if try block wont have any exception else block will execute  
     else:
         if age>=18: # here indentation is not important because "age" variable will form already from try's block
+# but this else block will not run because try has break in it due to which else is neglected and finally is executed
             print("Yes you can play")
         else:
             print("You can't play")
