@@ -160,19 +160,19 @@ t = turtle.Turtle() # here we create an object of turtle we can create as many o
 # Suppose you want to set your turtle’s characteristics to the following:
 # Pen color: purple , Fill color: orange , Pen size: 10 , Pen speed: 9
 # From what you’ve just learned, the code should look something like this:
-t.pencolor("purple")
-t.fillcolor("orange")
-t.pensize(10)
-t.speed(9)
-t.begin_fill()
-t.circle(90)
-t.end_fill()
-# Now, just imagine if you had ten different turtles. Changing all of their characteristics would be extremely tiresome for you to do!.com
-# The good news is that you can reduce your workload by altering the parameters in just a single line of code, like this:
-t.pen(pencolor="purple", fillcolor="orange", pensize=10, speed=9)
-t.begin_fill()
-t.circle(90)
-t.end_fill()
+# t.pencolor("purple")
+# t.fillcolor("orange")
+# t.pensize(10)
+# t.speed(9)
+# t.begin_fill()
+# t.circle(90)
+# t.end_fill()
+# # Now, just imagine if you had ten different turtles. Changing all of their characteristics would be extremely tiresome for you to do!.com
+# # The good news is that you can reduce your workload by altering the parameters in just a single line of code, like this:
+# t.pen(pencolor="purple", fillcolor="orange", pensize=10, speed=9)
+# t.begin_fill()
+# t.circle(90)
+# t.end_fill()
 
 # ______________________________________________________________________________________________________________________________________________
 
@@ -197,7 +197,7 @@ t.end_fill()
 # Undoing Changes
 # No matter how careful you are, there’s always a possibility of making a mistake. Don’t worry, though! The Python turtle library gives you
 # the option to undo what you’ve done. If you want to undo the very last thing you did, then type in the following:
-t.undo()
+# t.undo()
 # This undoes the last command that you ran. If you want to undo your last three(or as many commands as you want) commands, then you would 
 # type t.undo() three times.
 
@@ -224,14 +224,33 @@ t.undo()
 # Leaving a Stamp
 # You have the option of leaving a stamp of your turtle on the screen, which is nothing but an imprint of the turtle. Try typing in this code 
 # to see how it works:
-
-# t.stamp()
-
+# stamp will return a stamp_id which can be used to delete that stamp later using clearstemp func.
+# print(t.stamp()) # id = 8
 # t.fd(100)
-# t.stamp()
-
+# print(t.stamp()) # id = 9
+# t.fd(100)
+# print(t.stamp()) # id = 10
+# t.fd(100)
+# print(t.stamp())# id = 11
 # t.fd(100)
 
+# ____________________________________________________________________________________________________________________________________________
+
+# The numbers that appear are the turtle’s location or stamp ID. Now, if you want to remove a particular stamp, then just use the following:    
+# t.clearstamp(10)
+
+# ____________________________________________________________________________________________________________________________________________
+
+# Cloning Your Turtle
+# Sometimes, you may need to have more than one turtle on your screen. You’ll see an example of this later on in the final project. For now, you 
+# can get another turtle by cloning your current turtle into your environment. Try running this code to create a clone turtle, c, and then move
+# both the turtles on the screen:
+
+c = t.clone()
+t.color("magenta")
+c.color("red")
+t.circle(100)
+c.circle(60)
 
 
 
@@ -368,3 +387,22 @@ input("Press any key to exit ...")
     
 # turtle.done()
 
+# for a in range(9):
+#     t.speed(0)
+#     c = t.clone()
+#     c.speed(0)
+#     d = c.clone()
+#     d.speed(0)
+#     t.color("magenta","Orange")
+#     c.color("red","pink")
+#     d.color("Orange","pink")
+#     t.begin_fill()
+#     t.circle(100)
+#     t.end_fill()
+#     c.begin_fill()
+#     c.circle(60)
+#     c.end_fill()
+#     d.begin_fill()
+#     d.circle(30)
+#     d.end_fill()
+#     t.right(45)
