@@ -160,19 +160,19 @@ t = turtle.Turtle() # here we create an object of turtle we can create as many o
 # Suppose you want to set your turtle’s characteristics to the following:
 # Pen color: purple , Fill color: orange , Pen size: 10 , Pen speed: 9
 # From what you’ve just learned, the code should look something like this:
-# t.pencolor("purple")
-# t.fillcolor("orange")
-# t.pensize(10)
-# t.speed(9)
-# t.begin_fill()
-# t.circle(90)
-# t.end_fill()
+t.pencolor("purple")
+t.fillcolor("orange")
+t.pensize(10)
+t.speed(9)
+t.begin_fill()
+t.circle(90)
+t.end_fill()
 # Now, just imagine if you had ten different turtles. Changing all of their characteristics would be extremely tiresome for you to do!.com
 # The good news is that you can reduce your workload by altering the parameters in just a single line of code, like this:
-# t.pen(pencolor="purple", fillcolor="orange", pensize=10, speed=9)
-# t.begin_fill()
-# t.circle(90)
-# t.end_fill()
+t.pen(pencolor="purple", fillcolor="orange", pensize=10, speed=9)
+t.begin_fill()
+t.circle(90)
+t.end_fill()
 
 # ______________________________________________________________________________________________________________________________________________
 
@@ -180,24 +180,57 @@ t = turtle.Turtle() # here we create an object of turtle we can create as many o
 # Sometimes, you may want to move your turtle to another point on the screen without drawing anything on the screen itself. To do this, you 
 # use .penup(). Then, when you want to start drawing again, you use .pendown(). Give it a shot using the code that you used previously to draw
 # a square. Try typing the following code:
-t.fd(100)
-t.rt(90)
-t.penup() # commands that we will write under penup will get transparent
-t.fd(100)
-t.rt(90)
-t.pendown() # commands that we will write under penup will show on screen
-t.fd(100)
-t.rt(90)
-t.penup()
-t.fd(100)
-t.pendown()
+# t.fd(100)
+# t.rt(90)
+# t.penup() # commands that we will write under penup will get transparent
+# t.fd(100)
+# t.rt(90)
+# t.pendown() # commands that we will write under penup will show on screen
+# t.fd(100)
+# t.rt(90)
+# t.penup()
+# t.fd(100)
+# t.pendown()
 
+# ______________________________________________________________________________________________________________________________________________
 
+# Undoing Changes
+# No matter how careful you are, there’s always a possibility of making a mistake. Don’t worry, though! The Python turtle library gives you
+# the option to undo what you’ve done. If you want to undo the very last thing you did, then type in the following:
+t.undo()
+# This undoes the last command that you ran. If you want to undo your last three(or as many commands as you want) commands, then you would 
+# type t.undo() three times.
 
+# ____________________________________________________________________________________________________________________________________________
 
+# Clearing the Screen
+# Now, you probably have a lot on your screen since you’ve started this tutorial. To make room for more, just type in the following command:
+# t.clear() 
+# This will clean up your screen so that you can continue drawing. Note here that your variables will not change, and the turtle will remain in
+#  the same position. If you have other turtles on your screen other than the original turtle, then their drawings will not be cleared out unless
+# you specifically call them out in your code.
 
+# ____________________________________________________________________________________________________________________________________________
 
+# Resetting the Environment
+# You also have the option to start on a clean slate with a reset command. The screen will get cleared up, and the turtle’s settings will 
+# all be restored to their default parameters. All you need to to do is type in the following command:
+# t.reset()
+# This clears the screen and takes the turtle back to its home position. Your default settings, like the turtle’s size, shape, color,
+# and other features, will also be restored.
 
+# ____________________________________________________________________________________________________________________________________________
+
+# Leaving a Stamp
+# You have the option of leaving a stamp of your turtle on the screen, which is nothing but an imprint of the turtle. Try typing in this code 
+# to see how it works:
+
+# t.stamp()
+
+# t.fd(100)
+# t.stamp()
+
+# t.fd(100)
 
 
 
