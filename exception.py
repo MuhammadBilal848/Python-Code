@@ -112,3 +112,17 @@ while True:
 # now we have another keyword "Finally", finally's block will always execute whether the code in try's block has exception or not
     finally:
         print("Finally is executed")
+
+# _________________________________________________________ Custom Exceptions ___________________________________________________________________
+# we can create our ownn exception to show when user gives faulty input
+# e.g i want to make a func that return error named "NameTooShortError" when the len of user is len than 4 
+# now there is no error exist that has the same name as we want so we have to define that error in form of class and i have to inherit the 
+# similar error type , in this case ValueError is the best approach
+class NameTooShortError(ValueError):
+    pass
+def name(n):
+    if len(n)<=4:
+        raise NameTooShortError("Your name is too short")
+nam = input("Enter your name: ")
+name(nam)
+print("hello " + nam)
