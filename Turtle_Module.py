@@ -246,11 +246,11 @@ t = turtle.Turtle() # here we create an object of turtle we can create as many o
 # can get another turtle by cloning your current turtle into your environment. Try running this code to create a clone turtle, c, and then move
 # both the turtles on the screen:
 
-c = t.clone()
-t.color("magenta")
-c.color("red")
-t.circle(100)
-c.circle(60)
+# c = t.clone()
+# t.color("magenta")
+# c.color("red")
+# t.circle(100)
+# c.circle(60)
 
 
 

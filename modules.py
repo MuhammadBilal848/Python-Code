@@ -61,6 +61,10 @@ print(tan(0))
 # ____________________________________________________________________________________________________________________________________________
 
 # now if we want to know all the function in modules then we use dir() function. This show all function and its variables
-import module1 
-x = dir(module1)
+import math 
+x = dir(math)
+print(x)
+
+import turtle
+x = dir(turtle)
 print(x)
