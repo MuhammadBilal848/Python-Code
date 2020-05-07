@@ -1,0 +1,3 @@
+name,gender,age
+bilal,male,20
+bilal,male,20

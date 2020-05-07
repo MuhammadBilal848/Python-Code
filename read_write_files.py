@@ -20,6 +20,7 @@
 # "t" - Text - Default value. Text mode
 # "b" - Binary - Binary mode (e.g. images)
 
+print("                                         reading a file")
 print("                                         a")
 a = open("Test.txt","r")
 # so if we want to read the file we use "r" mode which is read mode and if i dont mention any mode , read mode is already set to default
@@ -104,4 +105,5 @@ print("                                         f")
 f = open(r"E:\new_file.txt") # so this line will cause error because single back slash(\) in python treated as escape sequence so to tackel this
 # we can use make the string a raw string by putting "r" before the string
 
+print("                                         writing a file")
 

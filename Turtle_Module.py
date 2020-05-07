@@ -252,15 +252,15 @@ t = turtle.Turtle() # here we create an object of turtle we can create as many o
 # t.circle(100)
 # c.circle(60)
 
-
-
-
-
-
-
-
-
-
+a = 10
+b = "#48C9B0"
+for b in range(10):
+    t.color("Orange","#48C9B0")
+    t.begin_fill()
+    t.circle(a)
+    t.end_fill()
+    a += 5
+    t.rt(90)
 
 # t.pensize(20)
 # t.circle(100)
