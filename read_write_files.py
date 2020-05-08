@@ -106,4 +106,9 @@ f = open(r"E:\new_file.txt") # so this line will cause error because single back
 # we can use make the string a raw string by putting "r" before the string
 
 print("                                         writing a file")
+a = open("filo.txt","a") # append "a" mode will create file if if does not exists
+a.write("Hello this file is made by using append mode")
 
+# we can also append a new text to the already existing file or the new file. using "a+" mode
+b = open("filo.txt","a+") 
+b.write("\n trying a+ mode")

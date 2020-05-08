@@ -5,21 +5,22 @@ from csv import reader
 # define that delimiter in reader / dictreader as keyword argument(we can define delimeiter in reader and dictreader mode)
 # we can use two methods for reading csv file one is reader method other is dictreader
 # to read file in csv we use reader function from csv module
-
+print("                             reader()")
 with open("one.csv","r") as f:
     csv_data = reader(f) # this will return csv reader object
     for a in csv_data:
         print(a)
 
+print("                             DictReader()")
 from csv import DictReader
 # to read csv file we have an other function called Dictreader which return ordered dictionary
 with open("one.csv","r") as f1:
     csv_data1 = DictReader(f1) # this will return csv Dictreader object
     for a in csv_data1:
         print(a)
-        # print(a["name"])
+        print(a["name"])
     
-# reading file using Dictreader is usefull
+# reading file using Dictreader is usefull, because it prints ordered dictionary
 
 # now i have another csv file named two.csv in which values are pipe separated
 with open("two.csv","r") as f3:
@@ -32,6 +33,7 @@ with open("two.csv","r") as f3:
 
 # we can use two methods for reading csv file one is writer method other is dictwriter
 from csv import writer 
+print("                             writer()")
 with open("file3.txt","w",newline='') as f4:
 # now we have two methods of writing into csv file , writerow and writerows
     a = writer(f4)
@@ -49,6 +51,7 @@ with open("file4.txt","w", newline='') as f5:
 
 # now we use dictwriter method to write into csv file
 from csv import DictWriter
+print("                             DictWriter()")
 with open("file4.txt","w",newline='') as f6:
     dw = DictWriter(f6,fieldnames=["fname","lname","age"])
     dw.writeheader()  # this will write field name in the file
@@ -71,3 +74,12 @@ with open("file5.txt","w",newline='') as f7:
 # _____________________________________________________________________________________________________________________
 # what if we want to read and write at the same time , for this we can do this
 
+from csv import DictReader,DictWriter
+with open("three.csv","r") as rf:
+    with open("four.csv","w") as wf:
+        c_read = DictReader(rf)
+        c_write = DictWriter(wf,fieldnames=["F_name","Email","Age"])
+        c_write.writeheader()
+        for a in c_read:
+            fname,eml,aGe = a["name"],a["email"],a["age"]
+            c_write.writerow({"F_name":fname , "Email":eml,"Age":aGe})
