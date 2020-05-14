@@ -1,7 +1,15 @@
 import os,shutil
-audio_ext = ("mp3","WAV","PCM","m4a")
-doc_ext = ("pdf","txt","doc")
-img_ext = ("jpg","png","gif","jpeg")
+audio_ext = ("mp3","WAV","PCM","m4a","Music")
+doc_ext = ("pdf","txt","doc","Documents")
+img_ext = ("jpg","png","gif","jpeg","Pictures")
+vid_ext = ("mp4","MKV","m4a","m4v","f4v","f4a","m4b","m4r","f4b","mov","wmv","3gp","WEBM","flv","avi","hdv","Videos")
+compressed_ext = ("7z","arj","deb","rar","rpm","z","zip","apk","tar","BZ2","TZ","Zipx","CAB","TAZ","GZ","Compressed Files")
+disc_ext = ("iso","bin","dmg","toast","Disc Files")
+data_ext = ("csv","dat","db","dbf","mbd","sav","sql","xml","json","Data Files")
+email_ext = ("email","eml","emlx","msg","oft","ost","pst","vcf","Emails")
+programming_ext = ("py","js","java","html","htm","css","php","c","cpp","cs","pl","swift","Programming Files")
+software_ext = ("exe","Software Files")
+torrent_ext = ("torrent","btapp","btkey","btsearch","btskin","loaded","magnet","utpart","zed","!ut","Torrent Files")
 combo_ext = []
 combo_file_name = []
 aud_file_path = list()

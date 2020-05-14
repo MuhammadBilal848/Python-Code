@@ -18,12 +18,14 @@ print(os.getcwd())
 # d = { "BSSE-SEC-A":["bilal","abuzar","usama","zaigham"] , "BSSE-SEC-B":["bilal1","abuzar2","usama3","zaigham4"] }
 # print(d["BSSE-SEC-A"][::-1])
 
-audio_ext = ("mp3","WAV","PCM","m4a")
+# audio_ext = ("mp3","WAV","PCM","m4a")
 
 
-combo_ext = {'png', 'pdf', 'mp3', 'txt', 'jpg','png',  'jpg','pdf', 'mp3', 'txt'}
-# # directory for music files
-for a in set(combo_ext):
-    if a in audio_ext:
-        os.mkdir("C:\First Demo Project\Music")
-        break
+# combo_ext = {'png', 'pdf', 'mp3', 'txt', 'jpg','png',  'jpg','pdf', 'mp3', 'txt'}
+# # # directory for music files
+# for a in set(combo_ext):
+#     if a in audio_ext:
+#         os.mkdir("C:\First Demo Project\Music")
+#         break
+audio_ext = ("mp3","WAV","PCM","m4a","3ga","aa","aa3","aac","ac3","acm","act","aif","avr","awb","Music")
+print(audio_ext[-1])

@@ -27,25 +27,26 @@ for c_path,c_folder,c_file in os.walk(os.getcwd()):
         combo_ext.append(ext)
         combo_file_name.append(fn)
 
+del rm_dir[0]
 
 # use to create directory where all the audio files needs to push
 music_dir_path = f"{os.getcwd()}\Music"
-for a in set(combo_ext):
-    if a in audio_ext:
+for check_aud_ext in set(combo_ext):
+    if check_aud_ext in audio_ext:
         os.mkdir(music_dir_path)
         break # helps in avoiding multiple checking of extentions
 
 
 doc_dir_path = f"{os.getcwd()}\Documents"
-for b in set(combo_ext):
-    if b in doc_ext:
+for check_doc_ext in set(combo_ext):
+    if check_doc_ext in doc_ext:
         os.mkdir(doc_dir_path)
         break # helps in avoiding multiple checking of extentions
 
 
 img_dir_path = f"{os.getcwd()}\Pictures"
-for c in set(combo_ext):
-    if c in img_ext:
+for check_img_ext in set(combo_ext):
+    if check_img_ext in img_ext:
         os.mkdir(img_dir_path)
         break # helps in avoiding multiple checking of extentions
 

@@ -1,10 +1,12 @@
-# _______________________________________________________________ Reading CSV File ______________________________________________________________
+# to use csv methods we have to import csv module
 from csv import reader
 # csv stands for "comma separated values" we use csv files to store tabular data(data in form of table) 
+# csv file has .csv extention
 # we can separate data through different delimiters(  ,  |  *  etc) but most commonly we use comma ,  if we change the delimeter we also have to 
 # define that delimiter in reader / dictreader as keyword argument(we can define delimeiter in reader and dictreader mode)
 # we can use two methods for reading csv file one is reader method other is dictreader
 # to read file in csv we use reader function from csv module
+# ______________________________________ Reading CSV File ______________________________________________
 print("                             reader()")
 with open("one.csv","r") as f:
     csv_data = reader(f) # this will return csv reader object
@@ -29,7 +31,7 @@ with open("two.csv","r") as f3:
         # print(a)
         print(a["name"])
 
-# _______________________________________________________________ Writing CSV File ______________________________________________________________
+# ____________________________________________ Writing CSV File _________________________________________
 
 # we can use two methods for reading csv file one is writer method other is dictwriter
 from csv import writer 
