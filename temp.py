@@ -27,5 +27,10 @@ print(os.getcwd())
 #     if a in audio_ext:
 #         os.mkdir("C:\First Demo Project\Music")
 #         break
-audio_ext = ("mp3","WAV","PCM","m4a","3ga","aa","aa3","aac","ac3","acm","act","aif","avr","awb","Music")
-print(audio_ext[-1])
+# audio_ext = ("mp3","WAV","PCM","m4a","3ga","aa","aa3","aac","ac3","acm","act","aif","avr","awb","Music")
+# print(audio_ext[-1])
+
+if 1>5:
+    pass
+else:
+    print('PPPPP')

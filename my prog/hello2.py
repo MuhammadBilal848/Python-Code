@@ -1,0 +1,1 @@
+print("Bhutto Zinda Hai")
