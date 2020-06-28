@@ -17,7 +17,7 @@ import numpy as np
 # candidate for conversion.
 data = [6, 7.5, 8, 0, 1]
 arr = np.array(data) # this is 1-d array or vector
-print(arr)
+print(arr)  
 
 # Nested sequences, like a list of equal-length lists, will be converted into a multidimensional array:
 
