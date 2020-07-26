@@ -1,15 +1,24 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[397]:
+# # Numpy Introduction
+# * Numpy is python package designed for scientific computation.
+# * Numpy Arrys are the main reason to use Numpy Library.
+# * It is really fast as compared to python list.
+# * It is fast beacause it has binding with c programming language.
+
+# In[14]:
 
 
 import numpy as np
 
 
 # # Numpy - Array Creation and some Attributes
+# * 1-d array = vector
+# * 2-d array = matrix
+# * n-d array = tensor
 
-# In[94]:
+# In[70]:
 
 
 # Creating ndarrays
@@ -57,6 +66,11 @@ print('                                identifying data type of an array',end='\
 print(arr.dtype)
 print(arr1.dtype)
 
+
+# To check how many elements does an array has we can use 'size' attribute.
+print('                                identifying how many elements are there in an array',end='\n\n')
+print(arr.size)
+print(arr1.size)
 
 # In addition to np.array, there are a number of other functions for creating new
 # arrays. As examples, zeros and ones create arrays of 0s or 1s, respectively, with a
@@ -123,7 +137,7 @@ print('                              making of identity matrix',end = '\n\n')
 # to create identity(1s on the diagonal and 0s elsewhere) matrix we can use eye function or identity function
 # eye function's first parameter is no. of rows and second parameter is coloumn, if we forget to pass no. of coloumn its by default set to no. of rows
 print(np.eye(4))
-print(np.eye(4,5))
+print(np.eye(4,5))# this is not a square matrix so the diagonal still will contain ones but due to an extra column it will skip that column
 # identity function's first parameter is 'n' which works for both rows as well as coloumn. 
 print(np.identity(5))
 
@@ -138,6 +152,14 @@ print(arr)
 arr1 = np.arange(100)
 print(arr1)
 
+print('                             making an array using numpy''s linspace',end = "\n\n")
+# if we want to create an array of evenly spaced numbers we can use linspace function
+arr = np.linspace(0,5,10) # first argument is start second is stop and this is how many points/values we want between 0 to 5 
+# in our array. so this array will return 10 points/values between 0 to 5.
+print(arr)
+
+
+
 
 print('                             shaping of an array')
 print(np.zeros(2)) # this means make an array which have two element(len of number shows dimensions here dim is 1)
@@ -151,7 +173,7 @@ print(np.zeros((2,3,4,2,1))) # this means make 24(2,3,4 = 2*3*4) arrays of 2 row
 
 # # Numpy - Data Types for ndarrays
 
-# In[95]:
+# In[69]:
 
 
 # print('                              data type conversion')
@@ -204,8 +226,24 @@ print(conv,conv.dtype)
 
 
 # There are shorthand type code strings you can also use to refer to a dtype.
-print(np.array([1,2,3,4],dtype = 'u8' )) # u8 is a type code for int65/uint64 we can also yse i8 as well instead of u8.
+print(np.array([1,2,3,4],dtype = 'u8' )) # u8 is a type code for int65/uint64 we can also sse i8 as well instead of u8.
 # there are many data type and type codes available(visit Python for Aata Analysis by Wes McKinney book pg. no 91)
+
+'''
+##########################################################################################################################
+'''
+
+# Another thing to remember is that, if we change the data type of any single element in an array which (array) prior has
+# same data type for all the elements, the change in dtype of single element of an array would result in changing dtype of
+# all the elements to this single element dtype.
+arr = np.array([1,2,3,4,5,6])
+print(arr,arr.dtype) # in this array the data type of all the elements is int.
+# to float
+arr = np.array([1,2,3,4,5,6.0]) # here is changed the last element 6 to 6.0 which converts all the other elements dtype to float
+print(arr,arr.dtype)
+# to string
+arr = np.array([1,2,3,4,5,'6']) # here is changed the last element 6 to 6.0 which converts all the other elements dtype to float
+print(arr,arr.dtype) 
 
 
 # # Numpy - Arithmetic with NumPy Arrays
@@ -292,9 +330,20 @@ print(arr2d[2][1])
 # work, so you can pass a comma-separated list of indices to select individual elements.
 # So these are equivalent,
 print(arr2d[2,1])
+
 # See Figure 4-1 for an illustration of indexing on a two-dimensional array. I find it
 # helpful to think of axis 0 as the “rows” of the array and axis 1 as the “columns.” 
-# (visit Python for Aata Analysis by Wes McKinney book pg. no 96) for figure 4-1
+# 1) AXIS 0 IS THE DIRECTION ALONG THE ROWS , axis 0 is the axis that runs downward down the rows(which means that any change 
+# in axis 0 will apply to column)
+# 2) AXIS 1 IS THE DIRECTION ALONG THE COLUMN , axis 1 is the axis that runs horizontally across the columns(which means that
+# any change in axis 1 will apply to rows) 
+'''
+Reliable source to understand the axises of an array is , 
+[https://www.sharpsightlabs.com/blog/numpy-axes-explained/]
+(visit Python for Data Analysis by Wes McKinney book pg. no 96) for figure 4-1
+another site to understand axises is , [https://discuss.codecademy.com/t/what-is-an-axis-in-numpy/359666] 
+but the link above is highly recomended.
+'''
 
 # In multidimensional arrays, if you omit later indices, the returned object will be a
 # lower dimensional ndarray consisting of all the data along the higher dimensions. So
@@ -368,15 +417,41 @@ print(a)
 
 # # Indexing Practice
 
-# In[226]:
+# In[54]:
 
 
 a = np.zeros((20,20))
+print(a)
 var = 1
 for i in range(len(a)): # 20
     a[i,i] = 1
     a[i,-var] = 1
     var += 1
+print(a)
+
+# making alternate columns 1
+for i in range(len(a)): # 20
+    a[i,1::2] = 1
+print(a)
+
+# making alternate element 1 of 1st row , 1st column and last row , last column
+a[0,::2] = 1
+a[:,0][::2] = 1
+a[-1,::2] = 1
+a[:,-1][::2] = 1
+print(a)
+# __________________ OR __________________
+a[[0,-1],::2] = 1
+a[::2,[0,-1]] = 1
+print(a)
+
+for i in range(len(a)): # 0,1,2,3,4,5,6,7,8,9,....20
+    if (i%2!=0) and (i<=10): # 1,3 is odd == True
+        a[i,i:-i] = 1 # a[1,1:-1],a[3,3:-3] , a[11,11]
+        a[i:-i,i] = 1
+        a[-i-1,i:-i] = 1
+        a[i:-i,-i-1] = 1
+
 print(a)
 
 
@@ -459,16 +534,24 @@ print(data)
 
 # # Numpy - Fancy Indexing
 
-# In[636]:
+# In[129]:
 
 
 # # Fancy indexing is a term adopted by NumPy to describe indexing using integer arrays.
-# # Suppose we had an 8 × 4 array.
-# # Fancy indexing allow us to access those particular rows and column which we want. we just have to pass an array of 
-# # values(rows,column) 
-# # consider arr a matrix of 8 x 4 in which we want to select row no 0,2,4 and 6 so we have to pass a list of these numbers in 
-# # # index as list of list. or To select out a subset of the rows in a particular order, you can simply pass a list or
-# # ndarray of integers specifying the desired order
+# suppose we had vector with 6 elements,
+arr = np.array([10,11,12,13,14,15,16])
+# index #        0  1  2  3  4  5  6
+# here, we wanted to select elemnts that are on even index number, one way to do this is,
+print(arr[0],arr[2],arr[4],arr[6])
+# but with the help of fancy indexing we can do this ,
+print(arr[[0,2,4,6]]) # and this will return an array of these numbers.
+
+# Suppose we had an 8 × 4 array.
+# Fancy indexing allow us to access those particular rows and column which we want. we just have to pass an array of 
+# values(rows,column) 
+# consider arr a matrix of 8 x 4 in which we want to select row no 0,2,4 and 6 so we have to pass a list of these numbers in 
+# # index as list of list. or To select out a subset of the rows in a particular order, you can simply pass a list or
+# ndarray of integers specifying the desired order
 arr = np.empty((8, 4))
 for i in range(8):
     arr[i] = i
@@ -506,7 +589,7 @@ print(arr[:,[0,1,2]]) # here i select all the rows(bare slice) and after comma i
 # but if you are doing fancy indexing of an array and have already passed an array of selected rows then you cannot pass another 
 # comma seperated array of selected column(because this will bring the contents of selected rows) but can slice column of all
 # selected rows comma separated.
-
+print(arr[[0,2,4,6],:][:,[0,1]])
 print(arr[[0,2,4,6],:][:,[0,1]][1:3,1:])
 #  [row, bare column][bare row,column][sliced row,sliced column]
 
@@ -534,7 +617,7 @@ print(np.dot(a,b))
 # 1-D
 a = np.array([1,2,3,4])
 b = np.array([5,6,7,8])
-print(np.dot(a,b)) # a.dot(b) is equivalent to np.dot(a, s):
+print(np.dot(a,b)) # a.dot(b) is equivalent to np.dot(a, b):
 
 # 2-D
 a = np.array([[1,2,3],[4,5,6]])
@@ -600,13 +683,16 @@ print(arr.swapaxes(1, 2).shape)
 # another way to determine the value change is,
 print(arr.swapaxes(1, 2).ravel()) # ravel is a function which return a contiguous flattened array. 
 
-# for more details about swapaxes works [https://stackoverflow.com/questions/42312670/how-does-numpy-swapaxes-work?rq=1]
-# for more details about tranpose works [https://stackoverflow.com/questions/32034237/how-does-numpys-transpose-method-permute-the-axes-of-an-array]
+'''
+for more details about swapaxes works [https://stackoverflow.com/questions/42312670/how-does-numpy-swapaxes-work?rq=1]
+for more details about tranpose works [https://stackoverflow.com/questions/32034237/how-does-numpys-transpose-method-permute-the-axes-of-an-array]
+YT video on transpose array [https://www.youtube.com/watch?v=5vT553CSxas]
+'''
 
 
 # # Numpy - Universal Functions: Fast Element-Wise Array Functions
 
-# In[845]:
+# In[93]:
 
 
 # A universal function, or ufunc, is a function that performs element-wise operations
@@ -746,6 +832,11 @@ print('                            minimum() , fmin()',end = '\n\n')
 print(np.minimum(x,np.sqrt(y))) # this will not ignore the nan and bring nan instead of value thas in the comparison
 print(np.fmin(x,np.sqrt(y))) # this will ignore nan and bring the value thats in the comparison
 
+print('                            maximum() , fmin()',end = '\n\n')
+# Element-wise maximum; fmin ignores NaN
+print(np.maximum(x,np.sqrt(y))) # this will not ignore the nan and bring nan instead of value thas in the comparison
+print(np.fmax(x,np.sqrt(y))) # this will ignore nan and bring the value thats in the comparison
+
 print('                            mod() ',end = '\n\n')
 # Element-wise modulus (remainder of division)
 print(np.mod(x,y)) 
@@ -757,26 +848,620 @@ print(np.copysign(x,y)) # here this will change the sign of y to x or the signs 
 # for more binary ufuncs (visit Python for Aata Analysis by Wes McKinney book pg. no 107) for figure 4-4
 
 
-# # Numpy - Array-Oriented Programming with Arrays
+# # Numpy - Array Oriented Programming with Arrays
 
-# In[863]:
-
-
-# points = np.arange(-5, 5, 0.01) # 1000 equally spaced points
-# xs, ys = np.meshgrid(points, points)
-# print(ys)
-# print(xs)
-x = np.zeros((5,5))
-x[0,0] = 0  
-x[0,1] = 1    
-x[0,2] = 2    
-x[0,3] = 3    
-x[0,4] = 4 
-x
+# In[30]:
 
 
-# In[ ]:
+points = np.arange(-5, 5, 0.01) # 1000 equally spaced points
+xs, ys = np.meshgrid(points, points)
+print(ys)
+print(xs)
+# grid(a network of lines that cross each other to form a series of squares or rectangles.)
+# meshgrid function helps in creating array of coordinate values because to create a grid we need each and every possible
+# coordinate and we can do this easily using meshgrid function. 
+# which is used to create a rectangular grid out of two given one-dimensional arrays.
+# here xs(returned by meshgrid) is simple 2-D array but yx is the transpose of the xs array due to which every combination of 
+# coordinate is possible.
+# Thats how a grid looks like [https://i.stack.imgur.com/1xeW8.png]
+
+# some simple examples of meshgrid function,
+
+# to understand the rows and columns of meshgrid function,
+# meshgrid(array-length = column,array-length = rows)
+#                   column = 5     row = 3
+a,b = np.meshgrid(np.arange(0,5),np.arange(6,9))
+# so row = 3 and column = 5 so shape would be (3,5)
+print(a,a.shape)
+print(b,b.shape)
+
+# using meshgrid with same size array
+xvalues = np.array([0,1,2,3,4]) # len of this array is 5 (len of this array considered as column)
+yvalues = np.array([0,1,2,3,4]) # len of this array is 5 (len of this array considered as row)
+# here xvalues and yvalues are of same length
+x,y = np.meshgrid(xvalues,yvalues)
+# here xvalues has 5(column) values and yvalues has also 5(row) values which means that meshgrid will create 5x5 matrix from 
+# the same 'xvalues' array with repeative row(which will later assgin in x) and the transposed array of yvalues with repeative
+# column will be assigned to y with the same array shape((xvalues)column=5, (yvalues)row=5 == 5x5 ).
+# Thing to remeber here is that the shape of array will never going to change it will be constant, here transpose will always be
+# of second argument/array(in this case 'yvalues') and the shape remains constant for the transposed array as well as the first
+# array.
+print(x)
+print(y)
+
+
+# using meshgrid with different size array
+xv = np.array([0,1,2,3,4,5,6,7]) # len of this array is 8 (len of this array considered as column)
+yv = np.array([0,1,2,3,4,5]) # len of this array is 6 (len of this array considered as rows)
+# here xv and yv are not of same length
+x,y = np.meshgrid(xv,yv)
+# here xv has 8(column) values and yv has also 6(row) values which means that meshgrid will create 6x8 matrix from 
+# the same 'xv' array with repeative row(which will later assgin in x) and the transposed array of yv with repeative
+# column will be assigned to y with the same array shape((xv)column=8, (yv)row=6 == 8x6 ).
+print(x, x.shape)
+print(y, y.shape)
+# the mesgrid function will manage the rows and columns itself, 
+
+# SPARSE PARAMETER IN MESHGRID
+x,y = np.meshgrid(xv,yv,sparse = True)
+# We observe that x is a row repeated matrix whereas y is a column repeated matrix. One row of x and one column of y
+# is enough to determine the positions of all the points as the other values will get repeated over and over. So we can edit 
+# above code as follows: OR when sparse parameter will be True it will return only first row and first column of first and 
+# second array respectively.
+print(x)
+print(y) 
+
+# two functions orgrid(in this sparse is True and takes ) and mgrid(in this sparse is False ) are pretty same as meshgrid
+x , y = np.ogrid[0:4,0:4]
+print(x)
+print(y)
+
+x,y = np.mgrid[0:8,0:6] # mgrid is basically the transpose of meshgrid. look for 'using meshgrid with different size array'.
+print(x)
+print(y)
+
+'''
+for more detail regarding meshgrid visit [https://www.geeksforgeeks.org/numpy-meshgrid-function/#:~:text=string%20in%20Python-,Numpy%20Meshgrid%20function,Cartesian%20indexing%20or%20Matrix%20indexing.]
+and [https://stackoverflow.com/questions/36013063/what-is-the-purpose-of-meshgrid-in-python-numpy]
+for more detail regarding mgrid visit [http://louistiao.me/posts/numpy-mgrid-vs-meshgrid/#id2]
+for more detail regarding mgrid visit [https://towardsdatascience.com/the-little-known-ogrid-function-in-numpy-19ead3bdae40]
+'''
+
+
+# # Numpy - Expressing Conditional Logic as Array Operations
+
+# In[52]:
+
+
+# The numpy.where function is a vectorized version of the ternary expression x if condition else y. Suppose we had a
+# boolean array and two arrays of values:
+xarr = np.array([1.1, 1.2, 1.3, 1.4, 1.5])
+yarr = np.array([2.1, 2.2, 2.3, 2.4, 2.5])
+cond = np.array([True, False, True, True, False])
+# Suppose we wanted to take a value from xarr whenever the corresponding value in cond is True, and otherwise take the value 
+# from yarr. A list comprehension doing this might look like:
+result = [(x if c else y) for x, y, c in zip(xarr, yarr, cond)]
+print(result)
+# This has multiple problems. First, it will not be very fast for large arrays (because all the work is being done in
+# interpreted Python code). Second, it will not work with multidimensional arrays. With np.where you can write 
+# this very concisely:
+result = np.where(cond, xarr, yarr)
+print(result)
+
+
+# generally, np.where works like this,
+#                 1       2        3
+# np.where(condition,option-A,option-B)
+# 1)The condition 
+# 2)What to do with entities for which the condition is True.
+# 3)What to do with entities for which the condition is False.
 
 
 
+# The second and third arguments to np.where don’t need to be arrays; one or both of them can be scalars. A typical use of
+# where in data analysis is to produce a new array of values based on another array. Suppose you had a matrix of randomly
+# generated data and you wanted to replace all positive values with 2 and all negative values with –2. This is very easy 
+# to do with np.where:
+arr = np.random.randn(4, 4)
+print(arr)
+print(arr>0)
+result1 = np.where(a>0,2,-2)
+print(result1)
+# You can combine scalars and arrays when using np.where. For example, I can replace all positive values in arr with
+# the constant 2 like so:
+result2 = np.where(arr > 0, 2, arr) # set only positive values to 2
+print(result2)
+# The arrays passed to np.where can be more than just equal-sized arrays or scalars.
+
+
+# # Numpy - Mathematical and Statistical Methods
+
+# In[99]:
+
+
+# A set of mathematical functions that compute statistics about an entire array or about
+# the data along an axis are accessible as methods of the array class. You can use aggre‐
+# gations (often called reductions) like sum, mean, and std (standard deviation) either by
+# calling the array instance method or using the top-level NumPy function.
+# To explain what I mean by “aggregate,” I’ll give you a simple example.
+# Imagine you have a set of 5 numbers. If sum up those 5 numbers, the result will be a single number.
+# Summation effectively aggregates your data. It collapses a large number of values into a single value.
+
+
+# Here I generate some normally distributed random data and compute some aggregate
+# statistics:
+arr = np.random.randn(5, 4)
+print(arr)
+
+# to find mean of an entire array we can use mean function,
+print(arr.mean())
+# OOOOOOOOOOOORRRRRRRRRRRRRRRRRRR
+print(np.mean(arr))
+ 
+# to find sum of an entire array we can use sum function,
+print(arr.sum())
+# OOOOOOOOOOOORRRRRRRRRRRRRRRRRRR
+print(np.sum(arr))
+
+# Functions like mean and sum take an optional axis argument that computes the statis‐
+# tic over the given axis, resulting in an array with one fewer dimension:
+# axis = 0 (will apply across column)
+# axis = 1 (will apply across rows)
+print(arr.mean(axis=1))
+print(arr.sum(axis=0))
+
+# Here, arr.mean(1) means “compute mean across the columns” where arr.sum(0)
+# means “compute sum down the rows.”
+# Other methods like cumsum and cumprod do not aggregate, instead producing an array
+# of the intermediate results:
+arr = np.array([0, 1, 2, 3, 4, 5, 6, 7])
+print(arr.cumsum()) # thats how comulative sum works [0,0+1,0+1+2,0+1+2+3,0+1+2+3+4,....so onnn]
+print(arr.cumprod()) # thats how comulative sum works [0,0*1,0*1*2,0*1*2*3,0*1*2*3*4,....so onnn]
+
+
+# In multidimensional arrays, accumulation functions like cumsum return an array of
+# the same size, but with the partial aggregates computed along the indicated axis
+# according to each lower dimensional slice:
+arr = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+print(arr)
+print(arr.cumsum(axis=0))
+print(arr.cumprod(axis=1))
+
+# there are also min/minimum and max/maximum function, 
+print(arr.min(axis = 1))
+print(arr.max(axis = 0))
+
+# another function argmin which returns the index number of minimum value in an array
+arr = np.random.randint(1,100,20)
+print(arr)
+print(min(arr))
+print(np.argmin(arr),'index number')
+
+# another function argmax which returns the index number of maximum value in an array
+arr = np.random.randint(1,100,20)
+print(arr)
+print(max(arr))
+print(np.argmax(arr),'index number')
+
+
+# See Table 4-5 for a full listing. (visit Python for Aata Analysis by Wes McKinney book pg. no 112) for Table 4-5
+
+
+# # Numpy - Methods for Boolean Arrays
+
+# In[255]:
+
+
+# Boolean values are coerced to 1 (True) and 0 (False) in the preceding methods. Thus,
+# sum is often used as a means of counting True values in a boolean array:
+
+arr = np.random.randn(100)
+print((arr>0).sum()) # Number of positive values
+
+# There are two additional methods, any and all, useful especially for boolean arrays.
+# any tests whether one or more values in an array is True, while all checks if every
+# value is True:
+bools = np.array([False, False, True, False])
+print(bools.any()) # any returns True if any element in an array is True
+print(bools.all()) # all returns True if all elements in an array are True
+
+# These methods also work with non-boolean arrays, where non-zero elements evaluate to True.
+
+
+# # Numpy - Sorting
+
+# In[278]:
+
+
+# Like Python’s built-in list type, NumPy arrays can be sorted in-place with the sort method:
+arr = np.random.randn(6)
+print(arr)
+arr.sort()
+print(arr)
+
+# You can sort each one-dimensional section of values in a multidimensional array inplace along 
+# an axis by passing the axis number to sort:
+arr1 = np.random.randn(5, 3)
+print(arr1)
+arr1.sort(1)
+print(arr1)
+# The top-level method np.sort returns a sorted copy of an array instead of modifying the array in-place.
+
+
+# # Numpy - Unique and Other Set Logic
+
+# In[109]:
+
+
+# NumPy has some basic set operations for one-dimensional ndarrays. A commonly
+# used one is np.unique, which returns the sorted unique values in an array:
+# unique function has four parameters, 
+# arr(The input array. Will be flattened if not 1-D array)
+# return_index(If True, returns the indices of elements in the input array)
+# return_inverse(If True, returns the indices of unique array, which can be used to reconstruct the input array)
+# return_counts(If True, returns the number of times the element in unique array appears in the original array)
+
+names = ['Bilal','Abuzar','Usama','Nofil','Zaigham','Hasan','Usama','Abuzar','Zaigham']
+names = np.unique(names)
+print(names)
+
+ints = np.array([3, 3, 3, 2, 2, 1, 1, 4, 4])
+ints1 = np.unique(ints)
+print(ints1)
+ints2 = np.unique(ints,return_index=True,return_counts=True)
+print(ints2)
+# in contrast np.unique with the pure Python alternative: sorted(set(names))
+
+
+# Another function, numpy.in1d() test whether each element of a 1-D array
+# is also present in a second array and return a boolean array the same length as arr1 that is True where 
+# an element of arr1 is in arr2 and False otherwise.
+# Syntax : numpy.in1d(arr1, arr2, assume_unique = False, invert = False)
+# Parameters :
+# arr1 : [array_like] Input array.
+# arr2 : [array_like] The values against which to test each value of arr1.
+# assume_unique : [bool, optional] If True, the input arrays are both assumed to be unique, which can speed up the calculation. Default is False.
+# invert : [bool, optional] If True, the values in the returned array are inverted. Default is False.
+
+
+arr1 = np.array([0, 1, 2, 3, 0, 4, 5,1]) 
+arr2 = [0, 2, 5,5] 
+result = np.in1d(arr1, arr2) 
+result1 = np.in1d(arr1, arr2,invert = True)
+result2 = np.in1d(arr1, arr2,invert = True,assume_unique=True)
+print(result)
+print(result1)
+print(result2)
+
+# Another function, Intersect1d Compute the sorted, common elements in x and.
+arr1 = np.array([1, 1, 2, 3, 4]) 
+arr2 = np.array([2, 1, 4, 6]) 
+result = np.intersect1d(arr1, arr2) 
+print(result)    
+
+# Another function, union1d(x, y) Compute the sorted union of elements.
+arr1 = np.array([1, 1, 2, 3, 4]) 
+arr2 = np.array([2, 1, 4, 6]) 
+result = np.union1d(arr1, arr2) 
+print(result)    
+
+# See Table 4-6 for a listing of set functions in NumPy.
+# (visit Python for Aata Analysis by Wes McKinney book pg. no 115) for Table 4-5
+
+
+# # Numpy - File Input and Output with Arrays
+
+# In[348]:
+
+
+# NumPy is able to save and load data to and from disk either in text or binary format.
+# np.save and np.load are the two workhorse functions for efficiently saving and load‐
+# ing array data on disk. Arrays are saved by default in an uncompressed raw binary
+# format with file extension .npy:
+# np.save('filename.npy',array) if we dont pass file ext(npy) here, numpy will manage itself. 
+# np.load('filename.npy')
+# np.savez('filename.npz',array1,array2,..)
+
+x = np.array([1,2,3,4,5,6])
+y = np.array([7,8,9,10,11])
+np.save('test1',x)
+
+# now im going to load this file
+
+l = np.load('test1.npy')
+print(l)
+
+# now im going to save multiple arrays, for which i use savez function
+# You save multiple arrays in an uncompressed archive using np.savez and passing the arrays as keyword arguments:
+np.savez('test2.npz',a=x,b=y) # a = key, x = value | b = key , y = value dict = ['a':x , 'b':y ]
+# now im going to load this file, When loading an .npz file, you get back a dict-like object that loads the individual
+# arrays lazily:
+l = np.load('test2.npz') 
+print(l) # npz file object
+print(l['a'])
+print(l['b'])
+
+
+# # Numpy - Linear Algebra
+
+# In[92]:
+
+
+# Linear algebra, like matrix multiplication, decompositions, determinants, and other
+# square matrix math, is an important part of any array library. Unlike some languages
+# like MATLAB, multiplying two two-dimensional arrays with * is an element-wise
+# product instead of a matrix dot product. Thus, there is a function dot, both an array
+# method and a function in the numpy namespace, for matrix multiplication:
+
+a = np.array([[1,2,3],[4,5,6],[7,8,9]])
+b = np.array([[1,2,3],[4,5,6],[7,8,9]])
+print(a*b) # * will mutiply two matrices element by element 
+
+# To find the dot product of two arrays.
+a = 2
+b = 3
+print(np.dot(a,b))
+
+# 1-D
+a = np.array([1,2,3,4])
+b = np.array([5,6,7,8])
+print(np.dot(a,b)) # a.dot(b) is equivalent to np.dot(a, b):
+
+
+# 2-D
+a = np.array([[1,2,3],[4,5,6]])
+b = np.array([[7,8],[9,10],[11,12]])
+print(a)
+print(b)
+# here multiplication works as same as we did, (PS: column1== row2)
+# [1 2 3]   [ 7  8]
+# [4 5 6] x [ 9 10]
+#           [11 12]
+print(a.dot(b))
+
+# A matrix product between a two-dimensional array and a suitably sized onedimensional array results in a one-dimensional array:
+x = np.array([[1., 2., 3.], [4., 5., 6.]])
+print(np.dot(x, np.ones(3)))
+
+# The @ symbol (as of Python 3.5) also works as an infix operator that performs matrix multiplication:
+print(x @ np.ones(3))
+
+# numpy.linalg has a standard set of matrix decompositions and things like inverse
+# and determinant. These are implemented under the hood via the same industrystandard linear algebra libraries used in
+# other languages like MATLAB and R, such as BLAS, LAPACK, or possibly (depending on your NumPy build) the proprietary Intel
+# MKL (Math Kernel Library):
+# linalg = linear algebra
+from numpy.linalg import *
+arr = np.arange(4).reshape(2,2)
+print(arr)
+arr1 = np.arange(25).reshape(5,5)
+print(arr1)
+# # to find determinant of a matrix , we can use det function of linalg module
+# print(det(arr))
+print(det(arr1))
+# print(inv(arr1)) # this will cause error because the determinant of arr1 is 0 , inv(A)= adj(A)/|A|
+# now we find inv of that array whose det is not zero
+arr = np.random.randn(5,5)
+print(det(arr))
+print(inv(arr))
+
+# another function diag, which return the diagonal elements of an array in form of 1-D array.
+arr1 = np.arange(25).reshape(5,5)
+print(arr1)
+print(np.diag(arr1))
+
+# an other use of diagonal matrix is that we can passan array of values in diag function and the function will set all the
+# given values as diagonal and will set rest of the to zero
+arr = np.array([2,4,6,8,10])
+print(np.diag(arr))
+
+# another function trace, which Compute the sum of the diagonal elements.
+arr1 = np.arange(25).reshape(5,5)
+print(arr1)
+print(np.trace(arr1))
+
+# See Table 4-7 for a full listing of functions. (visit Python for Aata Analysis by Wes McKinney book pg. no 117) for Table 4-7
+
+
+# # Numpy - Pseudorandom Number Generation
+
+# In[106]:
+
+
+# The numpy.random module supplements the built-in Python random with functions
+# for efficiently generating whole arrays of sample values from many kinds of probabil‐
+# ity distributions
+
+# the main function of numpy.random module is seed() function which initialize the random number generator.
+np.random.seed(1) # here i initialized seed to 1
+# now i can use any function of Numpy for generating random numbers and now on for every function seed value is 1 untill i 
+# change its value, if i forget to set its value then the default value of seed function is my current time.
+# setting a particular value of seed can help us generating same random numbers ever and ever again. if i want complete random
+# numbers i just need to remove initialization line of seed
+
+
+''' A good source to know about seed function is, [https://www.sharpsightlabs.com/blog/numpy-random-seed/]'''
+
+# a function called np.random.normal() draw samples from a normal (Gaussian) distribution.
+arr = np.random.normal(size=(5,5))
+print(arr)
+
+# a function called np.random.randint() draw random integers from a given low-to-high range.
+# randint's first parameter considered as inclusive(means it can be included in the array returned) and second parameter
+# is considered to be exclusive(meas it cannot be included in the array returned).
+arr = np.random.randint(0,9,size=10) # this will generate random integers from 0 to 9 with seeding point initialized to 1.
+print(arr)
+
+arr = np.random.uniform(0,9,size=10)
+print(arr)
+
+# another function shuffle that suffles the elements of an array.
+x = np.arange(1,100,5)
+print(x)
+np.random.shuffle(x)
+print(x)
+
+
+# See Table 4-8 for a full listing of random functions. (visit Python for Aata Analysis by Wes McKinney book pg. no 119)
+# for Table 4-8
+
+
+# # Numpy - Advanced Array Manipulation
+# ### Appendix A
+
+# ## Numpy - Reshaping Arrays
+# * Gives a new shape to an array without changing its data. 
+# * Gives a new shape to an array as well as dimensions.
+# * Syntax - numpy.reshape(a, newshape, order='C') 
+
+# In[83]:
+
+
+# in the array below i have 25 elements and to reshape it i just need to find the factors of 25.
+# 25=5x5 (this is the only factor of 25)
+arr = np.arange(25)
+print(arr)
+print(arr.reshape(5,5))
+
+# another method to reshape an array can be,
+arr = np.arange(25).reshape(5,5) # this is similar to the above one and handy as well
+print(arr)
+# last parameter of reshape is order. which defines how an array will going to be look.
+# C - order means the array will be a row major array. (By default)
+# F - order means the array will be a column major array.
+# for visual representation (visit Python for Aata Analysis by Wes McKinney book pg. no 452) for figure A-3
+
+
+arr = np.arange(25).reshape(5,5,order='C') # row major
+print(arr)
+arr = np.arange(25).reshape(5,5,order='F') # column major
+print(arr)
+
+# some more ex. of reshaping
+arr = np.arange(24).reshape(4,6) # factors of 24 are, 24(4,6) , 24(2,2,6) , 24(2,2,3,2)
+print(arr)
+
+arr = np.arange(24).reshape(2,2,6)
+print(arr)
+
+arr = np.arange(24).reshape(2,2,3,2)
+print(arr)
+
+# you'll get an error if you cant fill up the matrix completely.
+
+# print(np.arange(24).reshape(2,2,3)) # here matrix is not comletely filled
+# if you want to prevent the error you can put -1 in that position , after which numpy will responsible for mangening this.
+# a thing to remember is that we can replace -1 only once like this reshape(n,n,..,-1) if we do this reshape(n,n,..,-1,-1)
+# this will cause error.
+
+print(np.arange(24).reshape(2,2,-1)) # here -1 will replace to 6 because thats the only number which will complete the 
+# number (2x2x6)
+print(np.arange(24).reshape(2,2,3,-1)) # here -1 will replace to 3 because thats the only number which will complete the 
+# number (2x2x3x3)
+
+
+# ## Numpy - Concatenating and Splitting Arrays
+# * Concatenate takes a sequence (tuple, list, etc.) of arrays and joins them together in order along the input axis.
+# * In order to concatenate two or more arrays the number of dimensions must be same.
+
+# In[196]:
+
+
+arr1 = np.array([[1, 2, 3], [4, 5, 6]])
+arr2 = np.array([[7, 8, 9], [10, 11, 12]])
+# we can use square braces ans circular braces both to keep arrays as first parameter.
+print(np.concatenate([arr1,arr2]))  
+print(np.concatenate((arr1,arr2)))
+# we can change the axis of concatenation as well, by default it is axis = 0.
+print(np.concatenate([arr1,arr2],axis=1))  
+print(np.concatenate((arr1,arr2),axis=1))
+
+while concatenating array be carefull about the dimension and shape of an array.
+a = np.array([[1,2],[3,4]])
+b = np.array([[5,6]])
+a = (2,2)
+b = (1,2)
+axis(0,1)
+print(np.concatenate((a,b))) # here axis is 0 which means the array will concatenate along axis 0(which is concatenating 
+axis, (2,1) = 0 axis here) and we always need to check the values of axis other than concatenating axis(0)
+and in order to concatenate the values should be same ( (2,2) = axis 1 and values are some ). thats why catenation is 
+possible here.
+print(np.concatenate((a,b),axis = 1)) # this will cause error because the values of axis other than concatenating axis(1)(
+(2,2) = 1 axis here) are not same ( (2,1) = 0 axis here, clearly 2 and 1 are not same). thats why catenation is not 
+possible here.
+print(np.concatenate((a,b.T),axis = 1)) # here i transposed array b due to which the axis other than concatenating axis has
+become equal. 
+a = (2,2)
+b = (2,1)
+axis(0,1)
+
+# There are some convenience functions, like vstack and hstack, for common kinds of concatenation. The preceding operations
+# could have been expressed as:
+print(np.vstack((arr1, arr2))) # vstack means vertical stack, in which axis is 0
+print(np.hstack((arr1, arr2))) # hstack means vertical stack, in which axis is 1
+
+# another function column_stack which take a sequence of 1-D arrays and stack them as columns to make a single 2-D array.
+a = np.array((1,2,3))
+b = np.array((2,3,4))
+print(np.column_stack((a,b)))
+
+
+
+# Split, on the other hand, slices apart an array into multiple arrays along an axis:
+# arr = np.array([0,1,2,3,4,5,6,7,8])
+# print(np.split(arr,3)) # here my arr has 9 elements and amd i have splitted my array into 3 parts.
+# print(np.split(arr,(2,4,6))) # this will split at 2,4 and 6 index number.
+
+arr = np.random.randint(1,50,25).reshape(5,5)
+print(arr)
+print(np.split(arr,(2,3),axis = 1)) # axis 1 represents columns
+print(np.split(arr,(2,3),axis = 0)) # axis 0 represents rows
+
+# There are some convenience functions, like vsplit and hsplit, for common kinds of splitting. The preceding operations
+# could have been expressed as:
+print(np.hsplit(arr,(2,3))) # hsplit means horizontal split
+print(np.vsplit(arr,(2,3))) # vsplit means vertical split
+
+# 1) AXIS 0 IS THE DIRECTION ALONG THE ROWS , axis 0 is the axis that runs downward down the rows(which means that any change 
+# in axis 0 will apply to column)
+# 2) AXIS 1 IS THE DIRECTION ALONG THE COLUMN , axis 1 is the axis that runs horizontally across the columns(which means that
+# any change in axis 1 will apply to rows) 
+
+
+# See Table A-1 for a full listing of concatenating and splitting functions. (visit Python for Aata Analysis by WesMcKinney 
+# book pg. no 456) for Table A-1.
+
+
+# ## Numpy - Stacking helpers: r_ and c_
+
+# In[201]:
+
+
+# There are two special objects in the NumPy namespace, r_ and c_, that make stacking
+# arrays more concise:
+arr = np.arange(6)
+arr1 = arr.reshape((3, 2))
+arr2 = np.random.randn(3, 2)
+print(np.r_[arr1, arr2])
+print(np.c_[arr1,arr2])
+
+
+# ## Numpy - Repeating Elements: tile and repeat
+# * Tile constructs an array by repeating A the number of times given by reps.
+# * Syntax - numpy.tile(A, reps)
+# * Repeat replicates each element in an array some number of times, producing a larger array.
+# * Syntax - numpy.repeat(a, repeats, axis=None)
+
+# In[208]:
+
+
+# Two useful tools for repeating or replicating arrays to produce larger arrays are the repeat and tile functions. 
+
+# numpy.repeat repeats all the elements of an array according to specified value.
+arr = np.array([1,2,3])
+print(np.repeat(arr,3)) # here each element will repeat 3 times
+
+# numpy.tile repeats the tile of elements of an array according to specified value.
+arr = np.array([1,2,3])
+print(np.tile(arr,2)) # here array will repeat 2 tiles.
 
