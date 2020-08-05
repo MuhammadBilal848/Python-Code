@@ -2,12 +2,13 @@
 # coding: utf-8
 
 # # Numpy Introduction
-# * Numpy is python package designed for scientific computation.
-# * Numpy Arrys are the main reason to use Numpy Library.
+# * In 2005, **Travis Oliphant** created **NumPy**.
+# * Numpy is **Python Package** designed for scientific computation.
+# * **Numpy Arrys** are the main reason to use Numpy Library.
 # * It is really fast as compared to python list.
-# * It is fast beacause it has binding with c programming language.
+# * It is fast because it has binding with **C Programming Language**.
 
-# In[14]:
+# In[2]:
 
 
 import numpy as np
@@ -18,7 +19,7 @@ import numpy as np
 # * 2-d array = matrix
 # * n-d array = tensor
 
-# In[70]:
+# In[4]:
 
 
 # Creating ndarrays
@@ -36,6 +37,12 @@ print('                                making of nd-array',end='\n\n')
 data1 = [[1,2,3,4],[5,6,7,8]]
 arr1 = np.array(data1) # this is 2-d array or matrix
 print(arr1)
+
+# An important thing to remember while making nd-array is that the list of lists must be of equal-length, if the list of lists 
+# will not be having equal-length then we cannot call it nd-array and it will become a 1d-array in form of tuple.
+arr = np.array([['Pakista','Turkey'],['Saudia','Indonesia','Italy']])
+print(arr)
+print(arr.ndim)
 
 
 # Now the above array is 2d array and to confirm this we can use 'ndim' attribute.
@@ -1464,4 +1471,72 @@ print(np.repeat(arr,3)) # here each element will repeat 3 times
 # numpy.tile repeats the tile of elements of an array according to specified value.
 arr = np.array([1,2,3])
 print(np.tile(arr,2)) # here array will repeat 2 tiles.
+
+
+# ## Numpy - Broadcasting
+# * A term **Broadcasting** is used when an arthimetic operation is performed between two different sized array. 
+# * **Rule # 1**:If two arrays differ in their number of dimensions, the shape of the one with fewer dimension is padded with ones on its leading side(left side)
+# * **Rule # 2**: If the shape of the two arrays does not match in any dimension, the array with shape equal to 1 in that dimension is stretched to match the other shape. 
+# * **Rule # 3**: If in any dimension the sizes disagree and niether equal to 1, an error is raised.
+
+# In[17]:
+
+
+# a = np.arange(4)
+# b = np.arange(3)
+# print(a,a.shape)
+# print(b,b.shape)
+# # a+b here broadcasting is not possible.
+# # we dont need rule # 1 because both the shapes are of same dimensions.
+# # so for rule # 2 we need to check the numbers on the traling end(right side) , so for 'a' the value is 4 and for 'b' the value 
+# # is 3 and to satisfy the broadcasting rule either these two dimensions need to be equal **OR** one of them is 1. here 3 and 
+# # 4 are not equal and none of them is equal to 1. Thats why broadcasting is not possible here.
+
+# a = np.arange(1,7).reshape(3,2)
+# b = np.array([1,2,3])
+# c = np.array([10,20])
+# print(a,a.shape)
+# print(b,b.shape)
+# print(c,c.shape)
+# print(a+c)
+# # in operation a and c, here rule # 1 is applicable bc the dimension are not same, so we need to add 1 on the left side of c 
+# # shape i.e. (1,2). 
+# # now rule # 2 , we need to check the numbers on the trailing end(right side), so for 'a' the shape is (3,2) and for c the shape
+# # is now (1,2) , and to satisfy the broadcasting rule either these two dimensions need to be equal **OR** one of them is 1, here
+# # (3,2) <------------
+# # (1,2) <------------
+# # from right side of both shapes, 2 and 2 are equal, and for the  other two 3 and 1 , are not equal but one of them is 1 so 
+# # thats also the rule satisfied.
+
+# # print(a+b)
+# # in operation a and b, here rule # 1 is applicable bc the dimension are not same, so we need to add 1 on the left side of b 
+# # shape i.e. (1,3).
+# # now rule # 2 , we need to check the numbers on the trailing end(right side), so for 'a' the shape is (3,2) and for b the shape
+# # is now (1,3) , and to satisfy the broadcasting rule either these two dimensions need to be equal **OR** one of them is 1, here
+# # (3,2) <------------
+# # (1,3) <------------
+# # from right side of both shapes, 2 and 3 are not equal and none of them is 1 so the condition is not satisfied here. and we 
+# # dont go for other axis if the first one is not true.
+
+a = np.array([[1],[2],[3]])
+b = np.array([1,2,3])
+print(a,a.shape)
+print(b,b.shape)
+print(a+b) 
+# in operation a and b, here rule # 1 is applicable bc the dimension are not same, so we need to add 1 on the left side of b 
+# shape i.e. (1,3). 
+# now rule # 2 , we need to check the numbers on the trailing end(right side), so for 'a' the shape is (3,1) and for b the shape
+# is now (1,3) , and to satisfy the broadcasting rule either these two dimensions need to be equal **OR** one of them is 1, here
+# (3,1) <------------
+# (1,3) <------------
+# from right side of both shapes, 1 and 3 are equal but one of them is 1, and for the other two 3 and 1 , are not equal but 
+# one of them is 1 so thats also the rule satisfied.
+
+# For more information [ https://www.youtube.com/watch?v=0u9OzBSRZec ]
+
+
+# In[ ]:
+
+
+
 
